@@ -1,0 +1,19 @@
+@use "global" as *;
+
+/* ----- 下層ページのメインコンテンツ上余白(共通) ----- */
+.sub-layout{
+  margin-top: rem(49);
+
+  @include mq(md){
+    margin-top: rem(147);
+  }
+}
+
+// ダイビング情報ページ用
+.sub-layout--info{
+  margin-top: rem(120);
+
+  @include mq(md){
+    margin-top: rem(148);
+  }
+}

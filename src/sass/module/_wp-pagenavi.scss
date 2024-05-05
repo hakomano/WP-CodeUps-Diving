@@ -1,0 +1,49 @@
+@use "global" as *;
+
+/* ----- ページネーション(WPプラグインWP-PageNavi使用前提) ----- */
+.wp-pagenavi {
+	clear: both;
+	text-align: center;
+  white-space: nowrap;
+}
+
+.wp-pagenavi a,
+.wp-pagenavi span {
+  display: inline-block;
+  padding: rem(10.2) rem(13.55);
+  font-size: rem(16);
+  font-family: $second-en-font-family;
+  font-weight: $bold;
+  line-height: 1;
+  color: $accent-green;
+  white-space: nowrap;
+  border: rem(1) solid $accent-green;
+  background-color: $white;
+  transition: .3s;
+  text-align: center;
+}
+
+.wp-pagenavi .page, .wp-pagenavi span{
+  margin: 0 rem(4.3);
+}
+
+.wp-pagenavi .previouspostslink {
+  margin-right: rem(32);
+  padding: rem(10.2);
+}
+
+.wp-pagenavi .nextpostslink {
+  margin-left: rem(32);
+  padding: rem(10.2);
+}
+
+.wp-pagenavi a:hover {
+	color: $white;
+	background-color: $accent-green;
+  opacity: 1;
+}
+
+.wp-pagenavi .current {
+	color: $white;
+	background-color: $accent-green;
+}

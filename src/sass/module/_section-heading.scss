@@ -1,0 +1,66 @@
+@use "global" as *;
+/* ----- 共通セクションタイトル ----- */
+.section-heading{
+  text-align: center;
+}
+
+.section-heading__en {
+  font-size: rem(32);
+  font-family: $english-font-family;
+  font-weight: $regular;
+  line-height: 1;
+
+  @include mq(md){
+    font-size: rem(40);
+  }
+}
+
+.section-heading__en::first-letter{
+  text-transform: capitalize;
+  color: $accent-green;
+}
+
+.section-heading__ja {
+  margin-top: rem(7);
+  font-size: rem(12);
+  font-family: $base-font-family;
+  font-weight: $regular;
+  color: $accent-green;
+  display: block;
+
+  @include mq(md){
+    margin-top: rem(8);
+  }
+}
+
+//色違い(ブログセクションPCのみ)
+.section-heading__en--white, .section-heading__ja--white{
+  @include mq(md){
+    color: $white;
+  }
+}
+
+.section-heading__en--white:first-letter{
+  @include mq(md){
+    color: $white;
+  }
+}
+
+//フォントサイズ違い(お問い合わせセクションタイトル)
+.section-heading__en--big{
+  font-size: rem(80);
+
+  @include mq(md){
+    font-size: rem(80);
+  }
+}
+
+.section-heading__ja--big{
+  display: block;
+  padding-top: 0;
+  margin-top: rem(-7);
+
+  @include mq(md){
+    margin-top: rem(-4);
+  }
+}

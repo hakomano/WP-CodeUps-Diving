@@ -1,0 +1,64 @@
+@use "global" as *;
+
+/* ----- 利用規約ページ ----- */
+.sub-terms-of-service__inner {
+  max-width: rem(600); //タブレット時の間延び防止用
+  width: 100%;
+  padding-right: $padding-sp;
+  padding-left: $padding-sp;
+  margin-inline: auto;
+
+  @include mq(md){
+    max-width: calc(rem(800) + $padding-pc * 2);
+    padding-right: $padding-pc;
+    padding-left: $padding-pc;
+  }
+}
+
+.sub-terms-of-service__title {
+  font-size: rem(24);
+  font-weight: $medium;
+  position: relative;
+  z-index: 1;
+
+  @include mq(md){
+    font-size: rem(32);
+  }
+}
+
+.sub-terms-of-service__text-box {
+  margin-top: rem(40);
+  font-size: rem(16);
+  @include line-height(32,16);
+}
+
+.sub-terms-of-service__text-box p:last-of-type {
+  margin-top: rem(32);
+}
+
+.sub-terms-of-service__text-box ol {
+  margin-top: rem(32);
+  counter-reset: li_count; //カウンタをセット
+}
+
+.sub-terms-of-service__text-box ol li {
+  text-indent: -1.4em;
+  padding-left: 1.5em;
+}
+
+.sub-terms-of-service__text-box ol li::before  {
+  counter-increment: li_count; //カウンタの値を計算していく
+  content: counter(li_count)"."; //数字出力
+  padding-left: 5px;
+}
+
+.sub-terms-of-service__text-box ul{
+  list-style-type: disc;
+  padding-left: rem(10);
+}
+
+.sub-terms-of-service__text-box ul li{
+  list-style-position: inside;
+  text-indent: -1em;
+  padding-left: 1em;
+}

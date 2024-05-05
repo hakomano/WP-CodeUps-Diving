@@ -1,0 +1,62 @@
+@use "global" as *;
+
+/* ----- よくある質問一覧(アコーディオンメニュー) ----- */
+.faq-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-list__item + .faq-list__item{
+  margin-top: rem(40);
+}
+
+.faq-list__item-question {
+  padding: rem(16) rem(60) rem(16) rem(16);
+  background-color: $accent-green;
+  color: $white;
+  position: relative;
+  cursor: pointer;
+
+  @include mq(md){
+    padding: rem(26) rem(110) rem(24) rem(40);
+    font-size: rem(20);
+  }
+}
+
+.faq-list__item-question::before,
+.faq-list__item-question::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: rem(16);
+    width: rem(28);
+    height: rem(1);
+    background: $white;
+    transition: .4s;
+
+    @include mq(md){
+      right: rem(40);
+      width: rem(32);
+    }
+}
+
+.faq-list__item-question::after {
+  transform: rotate(0deg);
+}
+
+.faq-list__item-question.active::after {
+  transform: rotate(90deg);
+}
+
+.faq-list__item-answer {
+  padding: rem(23) rem(16) rem(24);
+  background-color: $white;
+  border: rem(1) solid $accent-green;
+  line-height: 1.43;
+
+  @include mq(md){
+    margin-top: rem(15.9);
+    padding: rem(40) rem(40) rem(39);
+  }
+}
+

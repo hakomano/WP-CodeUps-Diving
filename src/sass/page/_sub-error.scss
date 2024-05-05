@@ -1,0 +1,65 @@
+@use "global" as *;
+
+/* ----- 404エラーページ ----- */
+.sub-error{
+  margin-top: rem(59);
+  text-align: center;
+  color: $white;
+
+  @include mq(md){
+    margin-top: rem(134);
+  }
+}
+
+.sub-error__inner{
+  position: relative;
+}
+
+.sub-error__inner::before{
+  position: absolute;
+  content: "";
+  background: url(../images/common/whale.svg) no-repeat;
+  background-size: contain;
+  aspect-ratio: 1 / 1;
+  width: clamp(21.563rem, 56.06vw, 43.625rem); //最小345 最大698
+  max-width: 100%;
+  height: auto;
+  top: -40%;
+  left: 4%;
+  display: inline-block;
+
+  @include mq(md){
+    top: -43%;
+    left: 2%;
+  }
+}
+
+.sub-error__title{
+  font-size: clamp(5rem, 3.239rem + 7.51vw, 10rem); //最小80 最大160
+  font-family: $second-en-font-family;
+  font-weight: $regular;
+  line-height: 1;
+  @include letter-spacing(50);
+  text-indent: 0.5em;
+  position: relative;
+  z-index: 1;
+}
+
+.sub-error__text{
+  margin-top: rem(2);
+  font-size: rem(16);
+  line-height: 1.56;
+
+  @include mq(md){
+    margin-top: rem(38);
+  }
+}
+
+.sub-error__btn{
+  margin-top: rem(39);
+
+  @include mq(md){
+    margin-top: rem(79);
+  }
+}
+

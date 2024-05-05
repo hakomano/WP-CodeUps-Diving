@@ -1,0 +1,48 @@
+@use "global" as *;
+
+/* ----- 下層ページの背景イラスト(共通) ----- */
+.sub-bg{
+  position: relative;
+}
+
+.sub-bg::before {
+  position: absolute;
+  content: "";
+  background: url(../images/common/fishes-right.svg) no-repeat;
+  background-size: contain;
+  aspect-ratio: 120 / 55;
+  width: clamp(7.5rem, 3.517rem + 17vw, 18.813rem); //最小120 最大301
+  max-width: 100%;
+  height: auto;
+  top: rem(-24);
+  left: 0;
+  display: inline-block;
+  z-index: -1;
+
+  @include mq(md){
+    aspect-ratio: 301 / 138;
+    top: rem(-68);
+    left: calc(50% - min(48vw, rem(620)));
+  }
+}
+
+// Aboutページ用
+.sub-bg--about::before{
+  @include mq(md){
+    top: rem(-151);
+  }
+}
+
+// Informationページ用
+.sub-bg--info::before{
+  top: rem(-94);
+}
+
+//PCのみイラスト非表示(サイトマップページ)
+.sub-bg--pc-none::before{
+  top: rem(-10);
+
+  @include mq(md){
+    content: none;
+  }
+}

@@ -1,0 +1,10 @@
+@use "global" as *;
+
+/* ----- Aboutページのギャラリーセクション ----- */
+.sub-about-gallery{
+  margin-top: rem(40);
+
+  @include mq(md){
+    margin-top: rem(120);
+  }
+}

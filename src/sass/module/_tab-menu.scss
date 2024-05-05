@@ -1,0 +1,46 @@
+@use "global" as *;
+
+/* ----- タブ ----- */
+.tab-menu{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: rem(21);
+  row-gap: rem(16);
+  justify-content: center;
+
+  @include mq(md){
+    display: flex;
+    column-gap: rem(32);
+    justify-content: flex-start;
+  }
+}
+
+.tab-menu__item a{
+  display: inline-block;
+  width: 100%;
+  padding: rem(5.5) rem(10);
+  font-size: rem(14);
+  @include line-height(22,14);
+  color: $accent-green;
+  text-align: center;
+  text-transform: uppercase;
+  border: rem(1) solid $accent-green;
+  background-color: $white;
+  transition: .3s;
+  cursor: pointer;
+
+  @include mq(md){
+    padding: rem(6) rem(10);
+    width: rem(162);
+    max-width: 100%;
+  }
+}
+
+.tab-menu__item.current a, .tab-menu__item a:hover{
+  color: $white;
+  background-color: $accent-green;
+}
+
+.tab-menu__item a:hover{
+  opacity: 1;
+}

@@ -1,0 +1,34 @@
+@use "global" as *;
+
+/* ----- トップページのファーストビュー ----- */
+.fv {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100); //スマホ時の100vh対応用
+}
+
+.fv__inner {
+  height: inherit;
+}
+
+.fv__title-wrap{
+  z-index: 2;
+}
+
+.fv__swiper, .fv__swiper-wrap, .fv__swiper-img, .fv__swiper-img img {
+  height: inherit;
+}
+
+.fv__swiper-img img{
+  aspect-ratio: 375 / 667;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  @include mq(md){
+    aspect-ratio: 1440 / 768;
+  }
+}

@@ -1,0 +1,285 @@
+@use "global" as *;
+
+/* ----- お問い合わせフォーム ----- */
+.contact-form__item {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: rem(24);
+  border-bottom: rem(1) dashed $accent-green;
+
+  @include mq(md){
+    column-gap: rem(39);
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: rem(40);
+  }
+}
+
+.contact-form__item + .contact-form__item{
+  margin-top: rem(22);
+
+  @include mq(md){
+    margin-top: rem(39);
+  }
+}
+
+.contact-form__label {
+  font-size: rem(16);
+  font-weight: $bold;
+  // white-space: nowrap;
+
+  @include mq(md){
+    max-width: rem(181);
+    width: 100%;
+  }
+}
+
+.contact-form__required {
+  margin-left: rem(8);
+  padding: rem(2) rem(11);
+  display: inline-block;
+  font-size: rem(12);
+  font-weight: $regular;
+  @include letter-spacing(40);
+  text-indent: 0.4em;
+  color: $white;
+  background-color: $red;
+}
+
+.contact-form__input, .contact-form__checkbox, .contact-form__select, .contact-form__textarea{
+  margin-top: rem(15);
+
+  @include mq(md){
+    margin-top: 0;
+    flex-grow: 1;
+  }
+}
+
+.contact-form__input::placeholder{
+  color: $sub-green;
+}
+
+//未入力エラー時のプライスホルダー色変更
+.contact-form__input.error::placeholder{
+  color: $white;
+}
+
+.contact-form__input, .contact-form__textarea {
+  padding: rem(7.8) rem(16);
+	width: 100%;
+	font-size: rem(16);
+	border: rem(1) solid $accent-green;
+  color: $main-green;
+  background-color: $white;
+}
+
+//入力欄フォーカス時
+.contact-form__input:focus, .contact-form__textarea:focus{
+  outline: auto rem(1) $accent-green; //枠線太く
+  caret-color: $accent-green; //入力キャレットメインカラーに
+}
+
+//未入力エラー時の入力欄カラー変更
+.contact-form__input.error, .contact-form__textarea.error {
+	border: rem(1) solid $red;
+  background-color: rgba($color: $red, $alpha: 0.2);
+}
+
+.contact-form__input{
+  line-height: 1;
+}
+
+.contact-form__checkbox{
+  @include mq(md){
+    margin-top: rem(2);
+  }
+}
+
+.contact-form__checkbox label{
+  display: block;
+}
+
+.contact-form__checkbox label:not(:first-of-type) {
+  margin-top: rem(3);
+}
+
+.contact-form__checkbox input + span {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 0 0 rem(22);
+  position: relative;
+}
+
+.contact-form__checkbox input + span::before {
+  content: "";
+  position: absolute;
+  top: rem(5);
+  left: 0;
+  background-color: $white;
+  border: rem(1) solid $accent-green;
+  display: block;
+  width: rem(14);
+  height: rem(14);
+}
+
+//未選択エラー時のチェックボックス色変更
+.contact-form__checkbox input.error + span::before {
+  border: rem(1) solid $red;
+  background-color: rgba($color: $red, $alpha: 0.2);
+}
+
+.contact-form__checkbox input + span::after {
+  content: "";
+  position: absolute;
+  top: rem(8);
+  left: rem(3);
+  transform: rotate(-45deg);
+  display: block;
+  width: rem(9);
+  height: rem(5);
+  border-bottom: rem(2) solid $red;
+  border-left: rem(2) solid $red;
+  transition:  .3s;
+  opacity: 0;
+}
+
+.contact-form__checkbox input:checked + span::after {
+  opacity: 1;
+}
+
+.contact-form__select{
+  position: relative;
+}
+
+.contact-form__select::after{
+  position: absolute;
+  content: "";
+  top: 50%;
+  right: rem(8);
+  transform: translateY(-50%);
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: rem(10) rem(6) 0 rem(6);
+  border-color: $accent-green transparent transparent transparent;
+}
+
+.contact-form__select select {
+  padding: rem(13) rem(28) rem(13) rem(8);
+  width: 100%;
+  font-size: rem(12);
+  line-height: 1;
+  border: rem(1) solid $accent-green;
+  color: $main-green;
+
+  @include mq(md){
+    padding: rem(8) rem(28) rem(8) rem(8);
+  }
+}
+
+.contact-form__textarea {
+  height: rem(200);
+}
+
+.contact-form__privacy {
+  margin-top: rem(40);
+  padding-inline: rem(32);
+  text-align: center;
+  font-size: rem(14);
+  @include line-height(22,14);
+
+  @include mq(md){
+    margin-top: rem(80);
+  }
+}
+
+.contact-form__privacy input + span {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 0 0 rem(29);
+  position: relative;
+  text-align: left;
+
+  @include mq(md){
+    padding: 0 0 0 rem(38);
+  }
+}
+
+.contact-form__privacy input + span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: $white;
+  border: rem(1) solid $accent-green;
+  display: block;
+  width: rem(22);
+  height: rem(22);
+}
+
+.contact-form__privacy a{
+  color: $accent-green;
+  text-decoration: underline;
+  text-decoration-color: $accent-green;
+  text-underline-offset: rem(3);
+}
+
+//チェックボックスTabキーフォーカス時
+.contact-form__checkbox input:focus-visible + span::before,
+.contact-form__privacy input:focus-visible + span::before{
+  outline: auto rem(2) $accent-green;
+}
+
+//未選択エラー時のチェックボックス色変更
+.contact-form__privacy input.error + span::before{
+  border: rem(1) solid $red;
+  background-color: rgba($color: $red, $alpha: 0.2);
+}
+
+.contact-form__privacy input + span::after {
+  content: "";
+  margin-top: rem(-3);
+  position: absolute;
+  top: rem(6);
+  left: rem(3);
+  transform: rotate(-45deg);
+  display: block;
+  width: rem(15);
+  height: rem(8);
+  border-bottom: rem(2) solid $red;
+  border-left: rem(2) solid $red;
+  transition: .3s;
+  opacity: 0;
+}
+
+.contact-form__privacy input:checked + span::after {
+  opacity: 1;
+}
+
+.contact-form__submit {
+  margin-top: rem(24);
+  text-align: center;
+
+  @include mq(md){
+    margin-top: rem(38);
+  }
+}
+
+//CF7カスタマイズ
+.contact-form__item .wpcf7-form-control-wrap{
+  width: 100%;
+}
+
+.contact-form__item .wpcf7-not-valid-tip{
+  display: none; //CF7のエラーメッセージ非表示
+}
+
+.contact-form__checkbox .wpcf7-list-item {
+  display: block;
+  margin: 0;
+}
+
+.contact-form__submit .wpcf7-spinner{
+  display: none;
+}

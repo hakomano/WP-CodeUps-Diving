@@ -1,0 +1,13 @@
+@use "global" as *;
+
+/* ----- 下層ページのサイドバー：キャンペーン ----- */
+.pickup-campaign__list{
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(40);
+}
+
+.pickup-campaign__btn{
+  margin-top: rem(43);
+  text-align: center;
+}

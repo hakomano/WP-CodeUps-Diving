@@ -1,0 +1,28 @@
+@use "global" as *;
+
+/* ----- 下層ページのフッター(共通) ----- */
+.sub-footer{
+  margin-top: rem(105);
+
+  @include mq(md){
+    margin-top: rem(160);
+  }
+}
+
+// 404ページのフッター上余白
+.sub-footer--page404{
+  margin-top: rem(45);
+
+  @include mq(md){
+    margin-top: rem(152);
+  }
+}
+
+// お問い合わせページ・サンクスページのフッター上余白
+.sub-footer--contact{
+  margin-top: rem(146);
+
+  @include mq(md){
+    margin-top: rem(120);
+  }
+}

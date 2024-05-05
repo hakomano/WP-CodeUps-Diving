@@ -1,0 +1,89 @@
+@use "global" as *;
+
+/* ----- トップページのpriceセクション ----- */
+.top-price{
+  background-color: $sub-green;
+  margin-top: rem(84);
+  padding-top: rem(85);
+  padding-bottom: rem(84);
+
+  @include mq(md){
+    margin-top: rem(143);
+    padding-top: rem(100);
+    padding-bottom: rem(105);
+  }
+}
+
+.top-price__inner{
+  max-width: rem(600);  //タブレット時の間延び防止用
+
+  @include mq(md){
+    position: relative;
+  }
+}
+
+.top-price__inner::before{
+  @include mq(md){
+    position: absolute;
+    content: "";
+    background: url(../images/common/fishes-left.svg) no-repeat;
+    background-size: contain;
+    aspect-ratio: 437 / 201;
+    max-width: rem(437);
+    width: 100%;
+    height: auto;
+    left: calc(50% - min(48vw, rem(620)));
+    bottom: -4.5%;
+    display: inline-block;
+  }
+}
+
+.top-price__content{
+  margin-top: rem(28);
+
+  @include mq(md){
+    margin-top: rem(41);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+}
+
+.top-price__img{
+  display: block;
+
+  @include mq(md){
+    width: calc(492 / 1080 * 100%);
+    max-width: 100%;
+  }
+}
+
+.top-price__img img{
+  aspect-ratio: 345 / 227;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+
+  @include mq(md){
+    aspect-ratio: 492 / 746;
+  }
+}
+
+.top-price__list{
+  margin-top: rem(40);
+
+  @include mq(md){
+    margin-top: 0;
+    width: calc(492 / 1080 * 100%);
+    max-width: 100%;
+  }
+}
+
+.top-price__btn{
+  margin-top: rem(40);
+  text-align: center;
+
+  @include mq(md){
+    margin-top: rem(79);
+  }
+}

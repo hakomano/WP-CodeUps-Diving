@@ -1,0 +1,18 @@
+@use "global" as *;
+
+/* ----- お問い合わせ送信完了画面 ----- */
+.sub-thanks{
+  text-align: center;
+}
+
+.sub-thanks__inner{
+  max-width: rem(600); //タブレット時の間延び防止用
+}
+
+.sub-thanks__text{
+  line-height: 1.41;
+}
+
+.sub-thanks__text + .sub-thanks__text{
+  margin-top: rem(38);
+}

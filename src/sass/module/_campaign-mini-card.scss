@@ -1,0 +1,77 @@
+@use "global" as *;
+
+/* ----- キャンペーンカード ----- */
+.campaign-mini-card a{
+  display: block;
+  height: 100%;
+  box-shadow: $card-shadow;
+  display: flex;
+  flex-direction: column;
+}
+
+.campaign-mini-card__img img{
+  aspect-ratio: 294 / 188;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.campaign-mini-card__content{
+  padding: rem(17) rem(23) rem(23.4);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.campaign-mini-card__title{
+  font-size: rem(16);
+  font-weight: $medium;
+  @include line-height(24,16);
+  border-bottom: rem(1) solid $accent-green;
+  padding-bottom: rem(8);
+  text-align: center;
+  // margin-top: rem(6);
+
+  //1行を超えると三点リーダーで省略する場合はこちら
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+
+  // @include mq(md){
+  //   // margin-top: rem(4);
+  //   padding-bottom: rem(6);
+  // }
+}
+
+.campaign-mini-card__text{
+  margin-top: rem(7.5);
+  display: block;
+  text-align: center;
+  font-size: rem(14);
+  @include line-height(24,14);
+}
+
+.campaign-mini-card__price{
+  margin-top: rem(8);
+  display: flex;
+  gap: rem(16);
+  align-items: baseline;
+  justify-content: center;
+  font-weight: $bold;
+  font-family: $second-en-font-family;
+  line-height: 1;
+}
+
+.campaign-mini-card__original-price{
+  font-size: rem(20);
+  text-decoration: line-through;
+  text-decoration-style:solid;
+  text-decoration-thickness: rem(3);
+  text-decoration-color: #C94800;
+}
+
+.campaign-mini-card__cut-price{
+  font-size: rem(32);
+  color: $accent-green;
+}

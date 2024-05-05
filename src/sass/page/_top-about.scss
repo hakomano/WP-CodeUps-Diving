@@ -1,0 +1,42 @@
+@use "global" as *;
+
+/* ----- トップページのabout usセクション ----- */
+.top-about{
+  margin-top: rem(82);
+
+  @include mq(md){
+    margin-top: rem(136);
+  }
+}
+
+.top-about__inner{
+  max-width: rem(600);  //タブレット時の間延び防止用
+
+  @include mq(md){
+    position: relative;
+  }
+}
+
+.top-about__inner::after{
+  @include mq(md){
+    position: absolute;
+    content: "";
+    background: url(../images/common/coral.svg) no-repeat;
+    background-size: contain;
+    aspect-ratio: 194 / 181;
+    max-width: rem(194);
+    width: 100%;
+    height: auto;
+    right: calc(50% - min(48vw, rem(637)));
+    bottom: -11.8%;
+    display: inline-block;
+  }
+}
+
+.top-about__content{
+  margin-top: rem(54);
+
+  @include mq(md){
+    margin-top: rem(121);
+  }
+}

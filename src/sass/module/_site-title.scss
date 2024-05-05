@@ -1,0 +1,40 @@
+@use "global" as *;
+
+/* ----- サイトタイトル ----- */
+.site-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  color: $white;
+  text-align: center;
+}
+
+.site-title--green{
+  color: $accent-green;
+}
+
+.site-title__main {
+  font-size: clamp(2.5rem, 1.62rem + 3.76vw, 5rem); //最小40px 最大80px
+  font-family: $second-en-font-family;
+  font-weight: $regular;
+  text-transform: uppercase;
+  letter-spacing: 0.54em;
+  text-indent: 0.54em;
+  @include line-height(40,40);
+
+  @include mq(md){
+    @include line-height(100,80);
+  }
+}
+
+.site-title__sub {
+  margin-top: rem(7);
+  font-size: rem(20);
+  font-family: $english-font-family;
+
+  @include mq(md){
+    margin-top: rem(4);
+  }
+}

@@ -1,0 +1,149 @@
+@use "global" as *;
+
+/* ----- About usの画像・テキストビュー ----- */
+.about-content{
+  position: relative;
+}
+
+.about-content__images{
+  margin-inline: auto;
+  display: flex;
+}
+
+.about-content__img--left{
+  width: calc(128 / 345 * 100%);
+  max-width: 100%;
+  margin-top: -7.5%;
+
+  @include mq(md){
+    width: calc(400 / 1080 * 100%);
+    margin-top: -7.5%;
+  }
+}
+
+.about-content__img--left img{
+  aspect-ratio: 128 / 194;
+
+  @include mq(md){
+    aspect-ratio: 399 / 606;
+  }
+}
+
+.about-content__img--right{
+  width: calc(281 / 345 * 100%);
+  max-width: 100%;
+  margin-left: -18.518%;
+  z-index: -1;
+
+  @include mq(md){
+    width: calc(880 / 1080 * 100%);
+    margin-left: -18.55%;
+  }
+}
+
+.about-content__img--right img{
+  aspect-ratio: 281 / 186;
+
+  @include mq(md){
+    aspect-ratio: 880 / 581;
+  }
+}
+
+.about-content__img img{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.about-content__text-content{
+  margin-top: rem(40);
+
+  @include mq(md){
+    display: flex;
+    column-gap: rem(40);
+    max-width: rem(840);
+    position: absolute;
+    top: 21%;
+    right: 3.8%;
+    margin-top: 0;
+  }
+}
+
+.about-content__text-content--btn-none{
+  @include mq(md){
+    align-items: center;
+    top: 20%;
+  }
+}
+
+.about-content__title{
+  font-size: clamp(2.5rem, 1.62rem + 3.76vw, 5rem); //最小40px 最大80px
+  font-weight: $regular;
+  font-family: $english-font-family;
+  line-height: 1;
+  color: $accent-green;
+
+  @include mq(md){
+    width: calc(400 / 840 * 100%);
+    max-width: 100%;
+    @include line-height(100,80);
+    color: $white;
+  }
+}
+
+.about-content__textarea{
+  margin-top: rem(16);
+
+  @include mq(md){
+    margin-top: 0;
+    width: calc(400 / 840 * 100%);
+  }
+}
+
+.about-content__text{
+  @include line-height(24,16);
+
+  @include mq(md){
+    color: $white;
+  }
+}
+
+.about-content__btn{
+  margin-top: rem(50);
+  text-align: center;
+
+  @include mq(md){
+    margin-top: rem(38);
+  }
+}
+
+//下層Aboutページ用画像(右)
+.about-content__img--sub-right{
+  width: 100%;
+  z-index: -1;
+
+  @include mq(md){
+    width: calc(880 / 1080 * 100%);
+    margin-left: -18.55%;
+  }
+}
+
+.about-content__img--sub-right img{
+  aspect-ratio: 345 / 228;
+
+  @include mq(md){
+    aspect-ratio: 880 / 581;
+  }
+}
+
+.about-content__title--sub-sp{
+  position: absolute;
+  content: "";
+  top: 5.5%;
+  left: 6.5%;
+  color: $white;
+
+  @include mq(md){
+    position: static;
+  }
+}

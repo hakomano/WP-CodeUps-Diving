@@ -1,0 +1,136 @@
+@use "global" as *;
+
+/* ----- 下層ページの料金一覧ページ ----- */
+.sub-price__inner.inner{
+  max-width: rem(600); //タブレット時の間延び防止用
+
+  @include mq(md){
+    max-width: calc(rem(700) + $padding-pc * 2);
+  }
+}
+
+.sub-price-list__block{
+  @include mq(md){
+    display: flex;
+  }
+}
+
+.sub-price-list__block + .sub-price-list__block{
+  margin-top: rem(40);
+
+  @include mq(md){
+    margin-top: rem(80);
+  }
+}
+
+.sub-price-list__title-box{
+  background-color: $accent-green;
+  text-align: center;
+  padding: rem(8);
+
+  @include mq(md){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:calc(200 / 700 * 100%);
+    max-width: 100%;
+  }
+}
+
+.sub-price-list__title{
+  font-size: rem(16);
+  font-weight: $bold;
+  @include line-height(24,16);
+  color: $white;
+  padding-left: rem(32);
+  display: inline-block;
+  position: relative;
+
+  @include mq(md){
+    padding-left: 0;
+    padding-bottom: rem(72);
+  }
+}
+
+.sub-price-list__title::before{
+  position: absolute;
+  content: "";
+  background: url(../images/common/whale-white.svg) no-repeat;
+  background-size: contain;
+  aspect-ratio: 1 / 1;
+  width: rem(24);
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  margin-right: rem(8);
+
+  @include mq(md){
+    width: rem(64);
+    top: auto;
+    bottom: 0;
+    left: 51%;
+    transform: translateX(-50%);
+    margin-right: 0;
+    margin-top: rem(17);
+  }
+}
+
+.sub-price-list__item{
+  display: flex;
+  flex-wrap: wrap;
+  font-size: rem(16);
+  border-top: rem(1) solid $accent-green;
+  border-left: rem(1) solid $accent-green;
+
+  @include mq(md){
+    width:calc(500 / 700 * 100%);
+    max-width: 100%;
+  }
+}
+
+.sub-price-list__item dt{
+  width: 69.56%;
+  text-align: center;
+  justify-content: center;
+  line-height: 1.5;
+
+  @include mq(md){
+    width: 67.4%;
+    text-align: left;
+    justify-content: left;
+  }
+}
+
+.sub-price-list__item dt span{
+  display: inline-block;
+}
+
+.sub-price-list__item dd{
+  width: 30.44%;
+  justify-content: end;
+  line-height: 1;
+
+  @include mq(md){
+    width: 100%;
+    flex: 1;
+  }
+}
+
+.sub-price-list__item dt, .sub-price-list__item dd{
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: rem(5.6) rem(15);
+  min-height: rem(60);
+  border-right: rem(1) solid $accent-green;
+  border-bottom: rem(1) solid $accent-green;
+  background-color: $white;
+
+  @include mq(md){
+    padding: rem(17) rem(15);
+    min-height: rem(59.1);
+  }
+}

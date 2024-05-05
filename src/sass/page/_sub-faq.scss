@@ -1,0 +1,17 @@
+@use "global" as *;
+
+/* ----- FAQページ ----- */
+.sub-faq__inner {
+  max-width: rem(600); //タブレット時の間延び防止用
+  width: 100%;
+  padding-right: $padding-sp;
+  padding-left: $padding-sp;
+  margin-inline: auto;
+
+  @include mq(md){
+    max-width: calc(rem(700) + $padding-pc * 2);
+    padding-right: $padding-pc;
+    padding-left: $padding-pc;
+  }
+}
+

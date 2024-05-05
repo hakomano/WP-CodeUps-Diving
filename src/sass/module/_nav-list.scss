@@ -1,0 +1,87 @@
+@use "global" as *;
+
+/* ----- ナビ共通(ドロワーナビ・フッターナビ・サイトマップ) ----- */
+.nav-list{
+  display: flex;
+  column-gap: rem(2);
+  justify-content: space-around;
+  color: $white;
+
+  @include mq(md){
+    column-gap: rem(100);
+    justify-content: flex-start;
+  }
+}
+
+.nav-list__left, .nav-list__right{
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(13);
+
+  @include mq(md){
+    flex-direction: row;
+    column-gap: rem(100);
+  }
+}
+
+.nav-list__items + .nav-list__items{
+  margin-top: rem(13);
+}
+
+.nav-list__item a{
+  display: block;
+  padding: rem(12) rem(8);
+  font-size: rem(16);
+  @include line-height(18,16);
+  white-space: nowrap;
+
+  @include mq(md){
+    padding: rem(12) rem(10);
+  }
+}
+
+.nav-list__item > a{
+  font-weight: $bold;
+  white-space: nowrap;
+}
+
+.nav-list__item > a::before{
+  content: "";
+  margin-right: rem(4);
+  width: rem(18);
+  height: rem(18);
+  display: inline-block;
+  background-image: url(./../images/common/starfish.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.nav-list__item--indent a{
+  display: block;
+  text-indent: -1.3em;
+  margin-left: 1.3em;
+
+  @include mq(md){
+    text-indent: 0;
+    margin-left: 0;
+  }
+}
+
+.nav-list__child {
+  margin-left: rem(22);
+}
+
+/* サイトマップページのナビ */
+.nav-list--map{
+  color: $main-green;
+  column-gap: rem(13);
+
+  @include mq(md){
+    justify-content: space-between;
+  }
+}
+
+.nav-list__item--map > a::before{
+  background-image: url(./../images/common/starfish-black.svg);
+}

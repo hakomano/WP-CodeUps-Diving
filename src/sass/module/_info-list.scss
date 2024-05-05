@@ -1,0 +1,8 @@
+@use "global" as *;
+
+/* ----- ダイビング情報一覧 ----- */
+.info-list{
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+}

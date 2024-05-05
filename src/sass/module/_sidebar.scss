@@ -1,0 +1,10 @@
+@use "global" as *;
+
+/* ----- サイドバー ----- */
+.sidebar__block + .sidebar__block{
+  margin-top: rem(81);
+
+  @include mq(md){
+    margin-top: rem(81);
+  }
+}

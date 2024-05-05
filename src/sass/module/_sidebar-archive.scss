@@ -1,0 +1,60 @@
+@use "global" as *;
+
+/* ----- サイドバー：アーカイブリスト ----- */
+.sidebar-archive__list p, .sidebar-archive__list a{
+  position: relative;
+  display: block;
+  font-size: rem(24);
+  color: $accent-green;
+  cursor: pointer;
+}
+
+.sidebar-archive__year p{
+  padding: rem(1) rem(8) rem(1) rem(32);
+
+  @include mq(md){
+    padding: rem(1.5) rem(8) rem(1.5) rem(32);
+  }
+}
+
+.sidebar-archive__list-months li a{
+  padding: rem(1) rem(8) rem(1) rem(28);
+
+  @include mq(md){
+    padding: rem(1.5) rem(8) rem(1.5) rem(28);
+  }
+}
+
+.sidebar-archive__year p::before, .sidebar-archive__list-months li a::before{
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(135deg);
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: rem(19.1) rem(11) 0 rem(11);
+  border-color: $accent-green transparent transparent transparent;
+  transform: translateY(-50%) rotate(-90deg);
+  transition: .4s;
+}
+
+.sidebar-archive__year p::before{
+  left: rem(5);
+}
+
+.sidebar-archive__year p.active::before {
+  transform: translateY(-50%) rotate(0deg);
+  left: 0;
+}
+
+.sidebar-archive__list-months{
+  margin-left: rem(29);
+  display: none;
+
+  @include mq(md){
+    margin-left: rem(30);
+  }
+}

@@ -1,0 +1,10 @@
+@use "global" as *;
+
+/* ----- トップページのフッター ----- */
+.top-footer{
+  margin-top: rem(105);
+
+  @include mq(md){
+    margin-top: rem(164);
+  }
+}

@@ -1,0 +1,19 @@
+@use "global" as *;
+
+/* ----- キャンペーンカード一覧 ----- */
+.campaign-list {
+  display: flex;
+}
+
+//下層ページ時
+.campaign-list--2col{
+  display: grid;
+  gap: rem(39);
+  grid-template-columns: repeat(1, 1fr);
+
+  @include mq(md){
+    column-gap: rem(40);
+    row-gap: rem(82);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,27 @@
+@use "global" as *;
+
+/* ----- お問い合わせページ ----- */
+.sub-contact__inner {
+  max-width: rem(600); //タブレット時の間延び防止用
+  width: 100%;
+  padding-right: $padding-sp;
+  padding-left: $padding-sp;
+  margin-inline: auto;
+
+  @include mq(md){
+    max-width: calc(rem(700) + $padding-pc * 2);
+    padding-right: $padding-pc;
+    padding-left: $padding-pc;
+  }
+}
+
+.sub-contact__error{
+  display: none;
+  font-size: rem(14);
+  color: $red;
+  width: fit-content;
+  max-width: 75%;
+  margin-inline: auto;
+  text-indent: -1em;
+  padding-left: 1em;
+}

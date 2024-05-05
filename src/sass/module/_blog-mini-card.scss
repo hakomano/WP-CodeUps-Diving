@@ -1,0 +1,50 @@
+@use "global" as *;
+
+/* ----- サイドバーのミニブログカード ----- */
+.blog-mini-card a{
+  display: flex;
+  column-gap: rem(16);
+  height: 100%;
+  padding: rem(16.5) rem(16) rem(15.6);
+  background-color: $white;
+  box-shadow: $card-shadow;
+  transition: .4s;
+}
+
+.blog-mini-card__img {
+  width: calc(121 / 262 * 100%);
+}
+
+.blog-mini-card__img img {
+  aspect-ratio: 121 / 90;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-mini-card__content {
+  width: calc(125 / 262 * 100%);
+}
+
+.blog-mini-card__date {
+  display: block;
+  font-size: rem(12);
+  font-family: $english-font-family;
+  @include line-height(18,12);
+}
+
+.blog-mini-card__title {
+  margin-top: rem(5);
+  font-size: rem(16);
+  font-weight: $medium;
+  @include line-height(24,16);
+  //2行を超えると三点リーダーで省略する
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.blog-mini-card + .blog-mini-card{
+  margin-top: rem(24);
+}

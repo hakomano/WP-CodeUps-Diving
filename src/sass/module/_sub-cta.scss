@@ -1,0 +1,19 @@
+@use "global" as *;
+
+/* ----- 下層ページのCTAセクション(共通) ----- */
+.sub-cta{
+  margin-top: rem(106);
+
+  @include mq(md){
+    margin-top: rem(140);
+  }
+}
+
+//サイトマップページのCTAセクション余白
+.sub-cta--map-margin{
+  margin-top: rem(94);
+
+  @include mq(md){
+    margin-top: rem(126);
+  }
+}

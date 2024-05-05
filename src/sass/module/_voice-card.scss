@@ -1,0 +1,122 @@
+@use "global" as *;
+
+/* ----- お客様の声(Voice)カード ----- */
+.voice-card{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.voice-card__wrap{
+  display: block;
+  height: 100%;
+  padding: rem(15) rem(16) rem(23);
+  box-shadow: $card-shadow;
+  display: flex;
+  flex-direction: column;
+
+  @include mq(md){
+    padding: rem(24);
+  }
+}
+
+.voice-card__info{
+  display: flex;
+  column-gap: rem(13);
+  align-items: end;
+
+  @include mq(md){
+    column-gap: rem(16);
+  }
+}
+
+.voice-card__infoBox{
+  display: flex;
+  flex-direction: column;
+  width: calc(149 / 313 * 100%);
+  max-width: 100%;
+
+  @include mq(md){
+    width: calc(276 / 472 * 100%);
+  }
+}
+
+.voice-card__user{
+  display: flex;
+  flex-direction: column;
+
+  @include mq(md){
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+  }
+}
+
+.voice-card__age-gender{
+  font-size: rem(12);
+  @include line-height(18,12)
+}
+
+.voice-card__title{
+  margin-top: rem(3);
+  font-size: clamp(1rem, 0.824rem + 0.75vw, 1.5rem); //最小16px 最大24px
+  font-weight: $medium;
+  padding-bottom: rem(3);
+  border-bottom: rem(1) solid $accent-green;
+
+  @include mq(md){
+    margin-top: rem(7.5);
+    padding-bottom: rem(2);
+  }
+}
+
+.voice-card__title--row-limit{
+  //3行を超えると三点リーダーで省略する
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+
+  @include mq(md){
+    //2行を超えると三点リーダーで省略する
+    -webkit-line-clamp: 2;
+  }
+}
+
+.voice-card__img{
+  width: calc(151 / 313 * 100%);
+  max-width: 100%;
+
+  @include mq(md){
+    width: calc(180 / 472 * 100%);
+  }
+}
+
+.voice-card__img img{
+  aspect-ratio: 180 / 140;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.voice-card__text{
+  margin-top: rem(16);
+  @include line-height(24,16);
+
+  @include mq(md){
+    margin-top: rem(40);
+  }
+}
+
+.voice-card__text--row-limit{
+  //10行を超えると三点リーダーで省略する
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+
+  @include mq(md){
+    //7行を超えると三点リーダーで省略する
+    -webkit-line-clamp: 7;
+  }
+}

@@ -1,0 +1,16 @@
+@use "global" as *;
+
+/* ----- コンテンツ量が少ないページでフッターを最下部に表示用 ----- */
+.body-container{
+  display: flex;
+  flex-direction: column;
+  // min-height: 100vh;
+}
+
+.body-container--bg-green{
+  background-color: $accent-green;
+}
+
+main{
+  flex: 1;
+}

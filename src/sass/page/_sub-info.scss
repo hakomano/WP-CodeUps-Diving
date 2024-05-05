@@ -1,0 +1,14 @@
+@use "global" as *;
+
+/* ----- 下層ページのダイビング情報ページ ----- */
+.sub-info__inner{
+  max-width: rem(600); //タブレット時の間延び防止用
+}
+
+.sub-info__tab-content{
+  margin-top: rem(15);
+
+  @include mq(md){
+    margin-top: rem(25);
+  }
+}

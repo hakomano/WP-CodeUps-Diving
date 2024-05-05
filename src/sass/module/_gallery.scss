@@ -1,0 +1,33 @@
+@use "global" as *;
+
+/* ----- ギャラリーセクション ----- */
+.gallery{
+  @include mq(md){
+    position: relative;
+  }
+}
+
+.gallery::before{
+  @include mq(md){
+    position: absolute;
+    content: "";
+    background: url(../images/common/fishes-left.svg) no-repeat;
+    background-size: contain;
+    aspect-ratio: 301 / 138;
+    max-width: rem(301);
+    width: 100%;
+    height: auto;
+    top: -4.8%;
+    right: calc(50% - min(48vw, rem(640)));
+    display: inline-block;
+  }
+}
+
+.gallery__list{
+  margin-top: rem(40);
+
+  @include mq(md){
+    margin-top: rem(80);
+  }
+}
+

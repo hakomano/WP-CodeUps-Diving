@@ -1,0 +1,84 @@
+@use "global" as *;
+
+/* ----- グローバルナビゲーション(PC) ----- */
+.pc-nav {
+  display: none;
+  height: inherit;
+
+  @include mq(md) {
+    display: block;
+  }
+}
+
+.pc-nav__items {
+  display: flex;
+  gap: rem(40);
+  height: inherit;
+}
+
+.pc-nav__item {
+  height: inherit;
+}
+
+.pc-nav__item a {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 1;
+  color: $white;
+  position: relative;
+}
+
+.pc-nav__item .en{
+  display: block;
+  font-size: rem(18);
+  font-family: $english-font-family;
+}
+
+.pc-nav__item .en::first-letter {
+  text-transform: capitalize;
+}
+
+.pc-nav__item .ja{
+  margin-top: rem(4);
+  display: block;
+  font-size: rem(10);
+  @include line-height(15,10);
+}
+
+//ホバーしたら下線が真ん中から広がるように表示
+.pc-nav__item a::after {
+  content: "";
+  /*絶対配置で線の位置を決める*/
+  position: absolute;
+  bottom: 20%;
+  /*線の形状*/
+  width: 90%;
+  height: rem(1);
+  background: $white;
+  /*アニメーションの指定*/
+  transition: all .3s;
+  transform: scale(0, 1);/*X方向0、Y方向1*/
+  transform-origin: center top;/*上部中央基点*/
+}
+
+@media (hover: hover) {
+  // hoverが使える端末(PC)
+  .pc-nav__item a:hover{
+    opacity: 1;
+  }
+  .pc-nav__item a:hover::after {
+    transform: scale(1, 1);/*X方向にスケール拡大*/
+  }
+}
+@media (hover: none) {
+  // hoverが使えない端末(スマホ・タブレット)
+  .pc-nav__item a:active{
+    opacity: 1;
+  }
+  .pc-nav__item a:active::after {
+    transform: scale(1, 1);/*X方向にスケール拡大*/
+  }
+}

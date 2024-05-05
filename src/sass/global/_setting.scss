@@ -1,0 +1,64 @@
+@use "sass:math";
+
+// インナー幅設定
+// コンテンツのインナー幅（最も共通の幅が多い部分）
+$inner: 1080px;
+// ※キュンパス幅ではなくインナーの幅を指す
+
+// 余白
+$padding-pc: 25px;
+$padding-sp: 15px;
+
+////////////////////
+// フォント設定
+////////////////////
+
+$base-font-family: 'Noto Sans JP', sans-serif;
+$english-font-family: 'Gotu', sans-serif;
+$second-en-font-family: 'Lato', sans-serif;
+// ※検証ツールでしっかり反映されているか確認する
+
+
+// フォントウェイト
+$regular: 400;
+$medium: 500;
+$bold: 700;
+
+// レタースペーシング(文字間)
+@mixin letter-spacing($l-spa) {
+  letter-spacing: calc(($l-spa / 100) * 1em);
+}
+
+// ラインハイト(行間)
+@mixin line-height($lineFeed:24,$fontsize:16) {
+  line-height: calc($lineFeed / $fontsize);
+}
+
+
+//基本フォント指定
+body {
+  font-family: $base-font-family;
+  font-weight: $regular;
+}
+
+////////////////////
+// 色の指定
+////////////////////
+
+//色指定（共通性のあるものは出来る限り指定すると良い）
+$white: #fff;
+$accent-green: #408F95;
+$main-green: #0D2936;
+$sub-green: #DDF0F1;
+$red: #C94800;
+
+$card-shadow: 2px 2px 10px rgba(0, 0, 0, .25);
+$cta-shadow: 4px 4px 10px rgba(0, 0, 0, .25);
+$tab-sp-shadow: 2px 2px 4px rgba(0, 0, 0, .25);
+$tab-pc-shadow: 4px 4px 8px rgba(0, 0, 0, .25);
+
+//基本カラー指定
+body{
+  color: $main-green;
+  background-color: $white;
+}

@@ -1,0 +1,14 @@
+@use "global" as *;
+
+/* ----- 下層ページの私たちについてページ ----- */
+.sub-about__inner{
+  max-width: rem(600); //タブレット時の間延び防止用
+}
+
+.sub-about__content{
+  margin-top: rem(50);
+
+  @include mq(md){
+    margin-top: rem(230);
+  }
+}

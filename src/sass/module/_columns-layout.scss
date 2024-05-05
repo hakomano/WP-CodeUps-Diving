@@ -1,0 +1,38 @@
+@use "global" as *;
+
+/* ----- サイドバーありの２カラムレイアウト(共通) ----- */
+.columns-layout__inner{
+  max-width: rem(600); //タブレット時の間延び防止用
+}
+
+.columns-layout__container{
+  display: flex;
+  flex-direction: column;
+  gap: rem(79);
+
+  @include mq(md){
+    flex-direction: row;
+    gap: rem(80);
+    // gap: rem(86); //ブログ詳細ページに合わせるならこっち(ピクパ)
+  }
+}
+
+.columns-layout__main{
+  width: 100%;
+
+  @include mq(md){
+    width: 65.37%;
+    // width: 64.8%; //ブログ詳細ページに合わせるならこっち(ピクパ)
+    max-width: 100%;
+  }
+}
+
+.columns-layout__sidebar{
+  padding-inline: rem(25.5);
+
+  @include mq(md){
+    width: 27.2%;
+    max-width: 100%;
+    padding-inline: 0;
+  }
+}

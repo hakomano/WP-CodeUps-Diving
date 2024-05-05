@@ -1,0 +1,130 @@
+@use "global" as *;
+
+/* ----- ヘッダー ----- */
+.header {
+  height: rem(80);
+  background-color: rgba($color: $main-green, $alpha: .68);
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  @include mq(md) {
+    height: rem(90);
+  }
+}
+
+.header__inner {
+  padding: 0 rem(15);
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+
+  @include mq(md) {
+    padding-inline: rem(40);
+  }
+}
+
+.header__logo {
+  max-width: rem(104);
+  height: inherit;
+  position: relative;
+  z-index: 999;
+
+  @include mq(md) {
+    max-width: rem(137);
+  }
+}
+
+.header__logo a {
+  height: inherit;
+  display: flex;
+  align-items: center;
+}
+
+/* ----- ハンバーガーボタン：三→✕ ----- */
+.header__hamburger {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  position: relative;
+  z-index: 999;
+  width: rem(32);
+  height: inherit;
+  cursor: pointer;
+  transition: .3s;
+
+  @include mq(md) {
+      display: none;
+  }
+}
+
+.header__hamburger span {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 100%;
+  height: rem(1);
+  background-color: $white;
+  transition: .5s;
+}
+
+.header__hamburger span:nth-of-type(1) {
+  top: rem(-11);
+}
+
+.header__hamburger span:nth-of-type(2) {
+  top: 0;
+}
+
+.header__hamburger span:nth-of-type(3) {
+  top: rem(11);
+}
+
+.header__hamburger.is-open span:nth-of-type(1) {
+  top: 0;
+  transform: translateX(-50%) rotate(37deg);
+}
+
+.header__hamburger.is-open span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.header__hamburger.is-open span:nth-of-type(3) {
+  top: rem(-2);
+  transform: translateX(-50%) rotate(-37deg);
+}
+
+/* ----- SPドロワーメニュー：全画面 ----- */
+.header__drawer {
+  padding: 0 rem(15);
+  display: none;
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $accent-green;
+  background-attachment: fixed;
+}
+
+.header__drawer-nav{
+  margin-top: rem(91);
+  margin-inline: auto;
+  position: relative;
+  max-width: rem(500);
+  width: 100%;
+  height: calc(100vh - rem(90));
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.header__drawer-nav::-webkit-scrollbar {
+  display: none;
+}

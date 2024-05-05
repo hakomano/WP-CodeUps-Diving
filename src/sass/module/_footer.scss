@@ -1,0 +1,94 @@
+@use "global" as *;
+
+/* ----- フッター ----- */
+.footer{
+  background-color: $accent-green;
+  padding-top: rem(48);
+  padding-bottom: rem(56);
+
+  @include mq(md){
+    padding-top: rem(80);
+    padding-bottom: rem(80);
+  }
+}
+
+.footer__inner {
+  max-width: rem(600);
+  width: 100%;
+
+  @include mq(md){
+    max-width: 100%;
+  }
+}
+
+.footer__head{
+  @include mq(md){
+    display: flex;
+  }
+}
+
+.footer__logo{
+  max-width: clamp(7.688rem, 5.861rem + 7.79vw, 12.875rem); //最小123px 最大206px
+}
+
+.footer__sns{
+  margin-top: rem(10);
+  display: flex;
+  column-gap: rem(16);
+
+  @include mq(md){
+    margin-top: rem(25);
+    margin-left: rem(34);
+  }
+}
+
+.footer__sns a{
+  width: rem(24);
+  aspect-ratio: 1 / 1;
+
+  @include mq(md){
+    width: rem(32);
+  }
+}
+
+.footer__sns a:nth-of-type(3){
+  padding-inline: rem(3);
+
+  @include mq(md){
+    width: rem(30);
+  }
+}
+
+.footer__sns img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.footer__list{
+  margin-top: rem(26);
+  margin-left: rem(-8);
+
+  @include mq(md){
+    margin-top: rem(2);
+    margin-left: rem(-10);
+  }
+}
+
+.footer__copyright {
+  margin-top: rem(28);
+  display: block;
+  text-align: center;
+  color: $white;
+  font-size: rem(12);
+  font-family: $english-font-family;
+  @include line-height(18,12);
+  white-space: nowrap;
+
+  @include mq(md){
+    margin-top: rem(67);
+    font-size: rem(14);
+    @include line-height(18,14);
+  }
+}
+

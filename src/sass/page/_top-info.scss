@@ -1,0 +1,82 @@
+@use "global" as *;
+
+/* ----- トップページのinformationセクション ----- */
+.top-info{
+  background-color: $sub-green;
+  margin-top: rem(75);
+  padding-top: rem(84);
+  padding-bottom: rem(86);
+
+  @include mq(md){
+    margin-top: rem(163);
+    padding-top: rem(100);
+    padding-bottom: rem(78);
+  }
+}
+
+.top-info__inner{
+  max-width: rem(600); //タブレット時の間延び防止用
+}
+
+.top-info__container{
+  margin-top: rem(28);
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+
+  @include mq(md){
+    margin-top: rem(40);
+    flex-direction: row;
+    gap: rem(48);
+    align-items: center;
+  }
+}
+
+.top-info__img{
+  display: block;
+
+  @include mq(md){
+    width: calc(540 / 1080 * 100%);
+  }
+}
+
+.top-info__img img{
+  aspect-ratio: 345 / 227;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+
+  @include mq(md){
+    aspect-ratio: 540 / 356;
+  }
+}
+
+.top-info__text-content{
+  @include mq(md){
+    width: calc(492 / 1080 * 100%);
+  }
+}
+
+.top-info__title{
+  font-size: rem(20);
+  font-weight: $bold;
+  @include line-height(24,20);
+  border-bottom: rem(1) solid $accent-green;
+  padding-bottom: rem(4);
+
+  @include mq(md){
+    font-size: rem(24);
+    line-height: 1;
+    padding-bottom: rem(7);
+  }
+}
+
+.top-info__text{
+  margin-top: rem(7);
+  @include line-height(24,16);
+}
+
+.top-info__btn{
+  margin-top: rem(39);
+  text-align: center;
+}

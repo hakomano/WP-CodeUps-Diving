@@ -1,0 +1,31 @@
+@use "global" as *;
+
+/* ----- 前後ページネーション ----- */
+.post-link__inner{
+  padding-inline: rem(15);
+}
+
+.post-link__prev-next {
+	clear: both;
+  display: flex;
+  justify-content: center;
+  gap: rem(82);
+}
+
+.post-link__prev-next a{
+  display: inline-block;
+  padding: rem(10.2);
+  font-size: rem(16);
+  line-height: 1;
+  color: $accent-green;
+  border: rem(1) solid $accent-green;
+  background-color: $white;
+  transition: .3s;
+  text-align: center;
+}
+
+.post-link__prev-next a:hover {
+	color: $white;
+	background-color: $accent-green;
+  opacity: 1;
+}

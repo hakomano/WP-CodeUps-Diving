@@ -1,0 +1,22 @@
+@use "global" as *;
+
+/* ----- 下層ページのサイトマップページ ----- */
+.sub-site-map{
+  margin-top: rem(36);
+
+  @include mq(md){
+    margin-top: rem(135);
+  }
+}
+
+.sub-site-map__inner{
+  max-width: rem(600); //タブレット時の間延び防止用
+}
+
+.sub-site-map__list{
+  margin-left: rem(-8);
+
+  @include mq(md){
+    margin-left: rem(-10);
+  }
+}

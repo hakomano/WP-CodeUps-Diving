@@ -1,0 +1,25 @@
+@use "global" as *;
+/* ----- サイドバー共通タイトル ----- */
+.sidebar-title{
+  position: relative;
+  display: inline-block;
+  font-size: rem(24);
+  font-weight: $regular;
+  padding: rem(9.5) rem(16) rem(4.5) rem(74);
+  border-left: rem(8) solid $accent-green;
+}
+
+.sidebar-title::before{
+  position: absolute;
+  content: "";
+  background: url(../images/common/whale-black.svg) no-repeat;
+  background-size: contain;
+  aspect-ratio: 1 / 1;
+  width: rem(50);
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  top: 51%;
+  left: rem(16);
+  transform: translateY(-50%);
+}

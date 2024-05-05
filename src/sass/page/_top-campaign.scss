@@ -1,0 +1,158 @@
+@use "global" as *;
+
+/* ----- トップページのcampaignセクション ----- */
+.top-campaign{
+  overflow: hidden;
+  margin-top: rem(45);
+  padding-bottom: rem(8); //ボタン下が見切れてしまうため
+
+  @include mq(md){
+    margin-top: rem(120);
+  }
+}
+
+.top-campaign__inner{
+  max-width: rem(600);
+
+  @include mq(md){
+    position: relative;
+  }
+}
+
+//スライダー前後ボタン
+.top-campaign__swiper-btn{
+  display: none;
+
+  @include mq(md){
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 2.2%;
+    width: fit-content;
+    display: flex;
+    gap: rem(80);
+  }
+}
+
+.top-campaign__btn-next{
+  right: auto;
+}
+
+.top-campaign__btn-prev, .top-campaign__btn-next{
+  @include mq(md){
+    position: relative;
+    margin: 0;
+    width: rem(80);
+    height: rem(80);
+    border: rem(1) solid $accent-green;
+    border-radius: 50%;
+    background-color: $white;
+    transition: .4s;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.top-campaign__btn-prev::before{
+  @include mq(md){
+    content: "";
+    position: absolute;
+    width: rem(40);
+    height: rem(8);
+    border-bottom: rem(1) solid $accent-green;
+    border-left: rem(1) solid $accent-green;
+    top: 50%;
+    left: 55%;
+    transform: translate(-55%, -50%) skew(-45deg);
+    transition: .4s;
+  }
+}
+
+.top-campaign__btn-next::before{
+  @include mq(md){
+    content: "";
+    position: absolute;
+    width: rem(40);
+    height: rem(8);
+    border-bottom: rem(1) solid $accent-green;
+    border-right: rem(1) solid $accent-green;
+    top: 48%;
+    left: 45%;
+    transform: translate(-45%, -48%) skew(45deg);
+    transition: .4s;
+  }
+}
+
+//スライダー前後ボタンホバー時(色反転)
+@media (hover: hover) {
+  // hoverが使える端末(PC)
+  .top-campaign__btn-prev:hover, .top-campaign__btn-next:hover{
+    @include mq(md){
+      border: rem(1) solid $white;
+      background-color: $accent-green;
+    }
+  }
+  .top-campaign__btn-prev:hover::before{
+    @include mq(md){
+      border-bottom: rem(1) solid $white;
+      border-left: rem(1) solid $white;
+    }
+  }
+  .top-campaign__btn-next:hover::before{
+    @include mq(md){
+      border-bottom: rem(1) solid $white;
+      border-right: rem(1) solid $white;
+    }
+  }
+  //スライダー前後ボタンクリック時
+  .top-campaign__btn-prev:active, .top-campaign__btn-next:active{
+    @include mq(md){
+      transform: scale(0.9);
+    }
+  }
+}
+@media (hover: none) {
+  // hoverが使えない端末(スマホ・タブレット)
+  .top-campaign__btn-prev:active, .top-campaign__btn-next:active{
+    @include mq(md){
+      border: rem(1) solid $white;
+      background-color: $accent-green;
+      transform: scale(0.9);
+    }
+  }
+  .top-campaign__btn-prev:active::before{
+    @include mq(md){
+      border-bottom: rem(1) solid $white;
+      border-left: rem(1) solid $white;
+    }
+  }
+  .top-campaign__btn-next:active::before{
+    @include mq(md){
+      border-bottom: rem(1) solid $white;
+      border-right: rem(1) solid $white;
+    }
+  }
+}
+
+.top-campaign__swiper{
+  margin-top: rem(28);
+  margin-right: calc(50% - 50vw);
+  padding-bottom: rem(10); //スライダー下が見切れてしまうため
+
+  @include mq(md){
+    margin-top: rem(40);
+  }
+}
+
+.top-campaign__swiper-list{
+  display: flex;
+}
+
+.top-campaign__btn {
+  text-align: center;
+  margin-top: rem(29);
+
+  @include mq(md){
+    margin-top: rem(70);
+  }
+}

@@ -1,0 +1,37 @@
+@use "global" as *;
+
+/* ----- 料金一覧表 ----- */
+.price-list__title{
+  font-size: rem(16);
+  font-weight: $bold;
+  @include line-height(24,16);
+  padding-bottom: rem(4);
+  border-bottom: 1px solid $accent-green;
+}
+
+.price-list__item{
+  display: flex;
+  flex-wrap: wrap;
+  font-size: rem(14);
+  @include line-height(24,14);
+
+  @include mq(md){
+    font-size: rem(16);
+    @include line-height(24,16);
+  }
+}
+
+.price-list__block + .price-list__block{
+  margin-top: rem(39);
+}
+
+.price-list__item dt{
+  margin-top: rem(8);
+  width: 74%;
+}
+
+.price-list__item dd{
+  margin-top: rem(8);
+  width: 26%;
+  text-align: right;
+}

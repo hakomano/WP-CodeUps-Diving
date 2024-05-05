@@ -1,0 +1,110 @@
+@use "global" as *;
+
+/* ----- タブ ----- */
+.tab-largish__menu{
+  display: flex;
+  column-gap: rem(20);
+  justify-content: space-between;
+
+  @include mq(md){
+    column-gap: rem(90);
+  }
+}
+
+.tab-largish__menu-item{
+  display: inline-block;
+  padding: rem(10) rem(16) rem(8);
+  font-size: rem(14);
+  min-width: rem(102);
+  width: 100%;
+  color: $accent-green;
+  text-align: center;
+  background-color: $sub-green;
+  box-shadow: $tab-sp-shadow;
+  transition: .4s;
+  cursor: pointer;
+
+  @include mq(md){
+    padding: rem(29) rem(16) rem(25);
+    font-size: rem(24);
+    box-shadow: none; //PCでは未選択タブには影無し
+  }
+}
+
+.tab-largish__menu-item span{
+  @include mq(md){
+    position: relative;
+    padding-left: rem(72);
+    font-size: clamp(0.938rem, 0.295rem + 1.34vw, 1.5rem);
+  }
+}
+
+.tab-largish__menu-item span::before{
+  @include mq(md){
+    position: absolute;
+    content: "";
+    background-size: contain;
+    aspect-ratio: 1 / 1;
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+}
+
+.tab-largish__menu-item:nth-of-type(1) span::before{
+  @include mq(md){
+    background: url(../images/common/whale-green.svg) no-repeat;
+    width: rem(64);
+    background-size: contain;
+  }
+}
+
+.tab-largish__menu-item:nth-of-type(2) span::before{
+  @include mq(md){
+    background: url(../images/common/shark-green.svg) no-repeat;
+    width: rem(63);
+    background-size: contain;
+  }
+}
+
+.tab-largish__menu-item:nth-of-type(3) span::before{
+  @include mq(md){
+    background: url(../images/common/fish-icon-green.svg) no-repeat;
+    width: rem(64);
+    background-size: contain;
+  }
+}
+
+// 選択時・ホバー時のタブメニュー
+.tab-largish__menu-item.current, .tab-largish__menu-item:hover{
+  color: $white;
+  background-color: $accent-green;
+
+  @include mq(md){
+    box-shadow: $tab-pc-shadow;
+  }
+}
+
+.tab-largish__menu-item:nth-of-type(1).current span::before, .tab-largish__menu-item:nth-of-type(1):hover span::before{
+  @include mq(md){
+    background: url(../images/common/whale-white.svg) no-repeat;
+    background-size: contain;
+  }
+}
+
+.tab-largish__menu-item:nth-of-type(2).current span::before, .tab-largish__menu-item:nth-of-type(2):hover span::before{
+  @include mq(md){
+    background: url(../images/common/shark-white.svg) no-repeat;
+    background-size: contain;
+  }
+}
+
+.tab-largish__menu-item:nth-of-type(3).current span::before, .tab-largish__menu-item:nth-of-type(3):hover span::before{
+  @include mq(md){
+    background: url(../images/common/fish-icon-white.svg) no-repeat;
+    background-size: contain;
+  }
+}

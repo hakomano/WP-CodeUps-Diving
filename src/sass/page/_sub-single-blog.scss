@@ -1,0 +1,10 @@
+@use "global" as *;
+
+/* ----- 下層ページのブログ詳細ページ ----- */
+.sub-single-blog__pagenavi{
+  margin-top: rem(39);
+
+  @include mq(md){
+    margin-top: rem(80);
+  }
+}
