@@ -89,13 +89,14 @@
   }
 
   /*=================================================================
-      投稿のラベルを変更
+      【管理画面】投稿のラベルを変更
   ==================================================================*/
   function change_post_menu_label() {
     global $menu;
     global $submenu;
-      $name = 'ブログ';
-    $menu[5][0] = $name;
+    $name = 'ブログ';
+    $menu[5][0] = $name; //表記名変更
+    $menu[5][6] = "dashicons-edit"; //アイコン変更
     $submenu['edit.php'][5][0] = $name.'一覧';
     $submenu['edit.php'][10][0] = '新しい'.$name.'を追加';
   }
@@ -118,7 +119,7 @@
   add_action( 'admin_menu', 'change_post_menu_label' );
 
   /*=================================================================
-      管理画面のサイドメニュー並び順を変更
+      【管理画面】サイドメニュー並び順を変更
   ==================================================================*/
   function sort_side_menu( $menu_order ) {
     return array(
@@ -143,7 +144,7 @@
   add_filter( 'menu_order', 'sort_side_menu' );
 
   /*=================================================================
-      メディアのラベルを変更
+      【管理画面】メディアのラベルを変更
   ==================================================================*/
   function change_menu_label() {
     global $menu, $submenu;
@@ -154,9 +155,9 @@
   add_action( 'admin_menu', 'change_menu_label' );
 
   /*=================================================================
-      投稿画面のプレイスホルダー変更
+      【管理画面】投稿画面のカスタマイズ
   ==================================================================*/
-  //タイトルのプレイスホルダーテキストを変更
+  /* タイトルのプレイスホルダーテキストを変更 */
   function change_default_title( $title ) {
     $screen = get_current_screen();
     if ( $screen->post_type == 'post' ) {
@@ -172,11 +173,124 @@
   }
   add_filter( 'enter_title_here', 'change_default_title' );
 
-  //本文プレイスホルダーテキストを変更(クリックしたら戻る)
-  function mytheme_write_your_story( $text, $post ) {
-    return "ここに記事の本文を入力してください";
+  /* 本文プレイスホルダーテキストを変更(クリックしたら戻る) */
+  function change_default_placeholder( $text ) {
+    $screen = get_current_screen();
+    if ( $screen->post_type == 'post' ) {
+        $text = 'ここにブログ記事の本文を入力してください ( 画像挿入も可 )';
+    }
+    elseif ( $screen->post_type == 'campaign' ) {
+          $text = 'ここにキャンペーン記事の本文を入力してください';
+    }
+    elseif ( $screen->post_type == 'voice' ) {
+          $text = 'ここにお客様の声記事の本文を入力してください';
+    }
+      return $text;
   }
-  add_filter( 'write_your_story', 'mytheme_write_your_story', 10, 2 );
+  add_filter( 'write_your_story', 'change_default_placeholder', 10, 2 );
+
+  /*=================================================================
+      【管理画面】カスタム投稿一覧画面カスタマイズ
+  ==================================================================*/
+  /* キャンペーン一覧のカテゴリー絞り込みフィルター追加 */
+  function add_campaign_taxonomy_restrict_filter() {
+    global $post_type;
+    if ( 'campaign' == $post_type ) {
+    ?>
+<select name="campaign_category">
+  <option value="">カテゴリー一覧</option>
+  <?php
+      $terms = get_terms('campaign_category');
+      foreach ($terms as $term) { ?>
+  <option value="<?php echo $term->slug; ?>"><?php echo $term->name; ?></option>
+  <?php } ?>
+</select>
+<?php
+    }
+  }
+  add_action( 'restrict_manage_posts', 'add_campaign_taxonomy_restrict_filter' );
+
+  /* お客様の声一覧のカテゴリー絞り込みフィルター追加 */
+  function add_voice_taxonomy_restrict_filter() {
+    global $post_type;
+    if ( 'voice' == $post_type ) {
+    ?>
+<select name="voice_category">
+  <option value="">カテゴリー一覧</option>
+  <?php
+      $terms = get_terms('voice_category');
+      foreach ($terms as $term) { ?>
+  <option value="<?php echo $term->slug; ?>"><?php echo $term->name; ?></option>
+  <?php } ?>
+</select>
+<?php
+    }
+  }
+  add_action( 'restrict_manage_posts', 'add_voice_taxonomy_restrict_filter' );
+
+
+  /* キャンペーン一覧にカテゴリー欄を追加 */
+  function add_campaign_posts_column( $defaults ) {
+    $defaults['campaign_category'] = 'カテゴリー'; //'campaign_cat'はタクソノミー名
+    return $defaults;
+  }
+  add_filter('manage_campaign_posts_columns', 'add_campaign_posts_column');
+
+  function add_campaign_posts_column_id($column_name, $id) {
+    $terms = get_the_terms($id, $column_name);
+    if ( $terms && ! is_wp_error( $terms ) ){
+      $campaign_cat_links = array();
+      foreach ( $terms as $term ) {
+        $campaign_cat_links[] = $term->name;
+      }
+      echo join( ", ", $campaign_cat_links ); //join：配列要素を文字列で結合(", "は区切り方)
+    }
+  }
+  add_action('manage_campaign_posts_custom_column', 'add_campaign_posts_column_id', 10, 2);
+
+  /* お客様の声一覧にカテゴリー欄を追加 */
+  function add_voice_posts_column( $defaults ) {
+    $defaults['voice_category'] = 'カテゴリー'; //'voice_cat'はタクソノミー名
+    return $defaults;
+  }
+  add_filter('manage_voice_posts_columns', 'add_voice_posts_column');
+
+  function add_voice_posts_column_id($column_name, $id) {
+    $terms = get_the_terms($id, $column_name);
+    if ( $terms && ! is_wp_error( $terms ) ){
+      $voice_cat_links = array();
+      foreach ( $terms as $term ) {
+        $voice_cat_links[] = $term->name;
+      }
+      echo join( ", ", $voice_cat_links );
+    }
+  }
+  add_action('manage_voice_posts_custom_column', 'add_voice_posts_column_id', 10, 2);
+
+  /* キャンペーン一覧カラムの順序を変更 */
+  function campaign_sort_column($columns){
+    $columns = array(
+      'title' => '記事タイトル',
+      'taxonomy-campaign_category' => 'カテゴリー',
+      'date' => '投稿日時',
+      'thumbnail' => 'アイキャッチ'
+    );
+    return $columns;
+  }
+  add_filter( 'manage_campaign_posts_columns', 'campaign_sort_column');
+
+  /* お客様の声一覧カラムの順序を変更 */
+  function voice_sort_column($columns){
+    $columns = array(
+      'title' => '記事タイトル',
+      'taxonomy-voice_category' => 'カテゴリー',
+      'date' => '投稿日時',
+      'thumbnail' => 'アイキャッチ'
+    );
+    return $columns;
+  }
+  add_filter( 'manage_voice_posts_columns', 'voice_sort_column');
+
 
   /*=================================================================
       アーカイブの表示件数変更
@@ -249,7 +363,7 @@
   /*管理画面のカラムを追加*/
   function manage_posts_columns($columns) {
     $columns['post_views_count'] = 'view数';
-    $columns['thumbnail'] = 'サムネイル';
+    $columns['thumbnail'] = 'アイキャッチ';
 
     return $columns;
   }
@@ -262,18 +376,18 @@
       $pv = get_post_meta($post_id, 'post_views_count', true);
     }
 
-    /*サムネイル呼び出し*/
+    /*アイキャッチ呼び出し*/
     if ($column_name === 'thumbnail') {
       $thumb = get_the_post_thumbnail($post_id, array(100, 100), 'thumbnail');
     }
 
-    /*ない場合は「なし」を表示する*/
+    /* 表示 */
     if (isset($pv) && $pv) {
       echo attribute_escape($pv);
     } elseif (isset($thumb) && $thumb) {
       echo $thumb;
-    } else {
-      echo __('None');
+    // } else {
+    //   echo __('None');
     }
   }
   add_action('manage_posts_custom_column', 'add_column', 10, 2);

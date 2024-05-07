@@ -1,21 +1,22 @@
-<!-- サイドバー -->
 <aside class="columns-layout__sidebar sidebar">
-  <!-- ブログの人気記事３件 -->
+  <!-- ブログの人気記事３件 ※View数(アクセス数)がない場合この項目ごと非表示 -->
+  <?php
+    $loopcounter = 0;
+
+    $args = array(
+      'post_type' => 'post',
+      'meta_key'=> 'post_views_count',
+      'orderby' => 'meta_value_num',
+      'order' => 'DESC',
+      'posts_per_page' => 3,
+    );
+    $the_query = new WP_Query($args);
+    if ( $the_query->have_posts() ):
+  ?>
   <section class="sidebar__block popular-blog">
     <h2 class="popular-blog__title sidebar-title">人気記事</h2>
     <ul class="popular-blog__list sidebar-list-layout">
       <?php
-        $loopcounter = 0;
-
-        $args = array(
-          'post_type' => 'post',
-          'meta_key'=> 'post_views_count',
-          'orderby' => 'meta_value_num',
-          'order' => 'DESC',
-          'posts_per_page' => 3
-        );
-        $the_query = new WP_Query($args);
-        if ( $the_query->have_posts() ):
         while ( $the_query->have_posts() ): $the_query->the_post();
         $loopcounter++;
       ?>
@@ -38,22 +39,25 @@
           </div>
         </a>
       </li>
-      <?php endwhile; endif; ?>
-      <?php wp_reset_postdata(); ?>
+      <?php endwhile; ?>
     </ul>
   </section>
+  <?php endif; ?>
+  <?php wp_reset_postdata(); ?>
 
-  <!-- お客様の声から最新1件表示 -->
+  <!-- お客様の声から最新1件表示 ※投稿記事がない場合この項目ごと非表示 -->
+  <?php
+    $args = array(
+      'post_type' => 'voice',
+      'posts_per_page' => 1,
+    );
+    $the_query = new WP_Query($args);
+    if ( $the_query->have_posts() ):
+  ?>
   <section class="sidebar__block pickup-voice">
     <h2 class="pickup-voice__title sidebar-title">口コミ</h2>
     <ul class="pickup-voice__list sidebar-list-layout">
       <?php
-        $args = array(
-          'post_type' => 'voice',
-          'posts_per_page' => 1,
-        );
-        $the_query = new WP_Query($args);
-        if ( $the_query->have_posts() ):
         while ( $the_query->have_posts() ): $the_query->the_post();
       ?>
       <li class="pickup-voice__item voice-mini-card">
@@ -92,8 +96,7 @@
           </div>
         </a>
       </li>
-      <?php endwhile; endif; ?>
-      <?php wp_reset_postdata(); ?>
+      <?php endwhile; ?>
     </ul>
     <div class="pickup-voice__btn">
       <a href="<?php echo esc_url( home_url( '/voice' ) ); ?>" class="button">
@@ -101,18 +104,22 @@
       </a>
     </div>
   </section>
+  <?php endif; ?>
+  <?php wp_reset_postdata(); ?>
 
-  <!-- キャンペーンから最新2件表示 -->
+  <!-- キャンペーンから最新2件表示 ※投稿記事がない場合この項目ごと非表示 -->
+  <?php
+    $args = array(
+      'post_type' => 'campaign',
+      'posts_per_page' => 2,
+    );
+    $the_query = new WP_Query($args);
+    if ( $the_query->have_posts() ):
+  ?>
   <section class="sidebar__block pickup-campaign">
     <h2 class="pickup-campaign__title sidebar-title">キャンペーン</h2>
     <ul class="pickup-campaign__list sidebar-list-layout">
       <?php
-        $args = array(
-          'post_type' => 'campaign',
-          'posts_per_page' => 2,
-        );
-        $the_query = new WP_Query($args);
-        if ( $the_query->have_posts() ):
         while ( $the_query->have_posts() ): $the_query->the_post();
       ?>
       <li class="pickup-campaign__item campaign-mini-card">
@@ -160,8 +167,7 @@
           </div>
         </a>
       </li>
-      <?php endwhile; endif; ?>
-      <?php wp_reset_postdata(); ?>
+      <?php endwhile; ?>
     </ul>
     <div class="pickup-campaign__btn">
       <a href="<?php echo esc_url( home_url( '/campaign' ) ); ?>" class="button">
@@ -169,6 +175,8 @@
       </a>
     </div>
   </section>
+  <?php endif; ?>
+  <?php wp_reset_postdata(); ?>
 
   <!-- 年ごとに分けて月別アーカイブ一覧 -->
   <section class="sidebar__block sidebar-archive">

@@ -2435,6 +2435,7 @@ main {
 	display: block;
 	font-family: "Gotu", sans-serif;
 	font-size: 0.875rem;
+	font-weight: 700;
 	line-height: 1.5;
 }
 
@@ -2538,6 +2539,7 @@ main {
 	height: auto;
 	left: 0;
 	max-width: 100%;
+	opacity: 0.7;
 	position: absolute;
 	top: -1.5rem;
 	width: clamp(7.5rem, 3.517rem + 17vw, 18.813rem);
