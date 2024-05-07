@@ -117,9 +117,96 @@
   add_action( 'init', 'change_post_object_label' );
   add_action( 'admin_menu', 'change_post_menu_label' );
 
+  /*=================================================================
+      管理画面のサイドメニュー並び順を変更
+  ==================================================================*/
+  function sort_side_menu( $menu_order ) {
+    return array(
+      "index.php", // ダッシュボード
+      "edit.php", // 投稿(ブログ)
+      "edit.php?post_type=campaign", // カスタム投稿(キャンペーン)
+      "edit.php?post_type=voice", // カスタム投稿(お客様の声)
+      "edit.php?post_type=page", // 固定ページ
+      "separator1", // 区切り線1
+      "upload.php", // メディア
+      "edit-comments.php", // コメント
+      "separator2", // 区切り線2
+      "options-general.php", // 設定
+      "themes.php", // 外観
+      "users.php", // ユーザー
+      "tools.php", // ツール
+      "plugins.php", // プラグイン
+      "separator-last" // 区切り線（最後）
+    );
+  }
+  add_filter( 'custom_menu_order', '__return_true' );
+  add_filter( 'menu_order', 'sort_side_menu' );
 
   /*=================================================================
-      サイドバー：人気記事の表示(プラグイン不使用)
+      メディアのラベルを変更
+  ==================================================================*/
+  function change_menu_label() {
+    global $menu, $submenu;
+    $menu[10][0] = '画像・ファイル';
+    $submenu['upload.php'][5][0] = '画像・ファイル一覧';
+    $submenu['upload.php'][10][0] = '画像・ファイルを追加';
+  }
+  add_action( 'admin_menu', 'change_menu_label' );
+
+  /*=================================================================
+      投稿画面のプレイスホルダー変更
+  ==================================================================*/
+  //タイトルのプレイスホルダーテキストを変更
+  function change_default_title( $title ) {
+    $screen = get_current_screen();
+    if ( $screen->post_type == 'post' ) {
+          $title = 'ここにブログのタイトルを入力';
+    }
+    elseif ( $screen->post_type == 'campaign' ) {
+          $title = 'ここにキャンペーン名を入力';
+    }
+    elseif ( $screen->post_type == 'voice' ) {
+          $title = 'ここにお客様の声タイトルを入力';
+    }
+      return $title;
+  }
+  add_filter( 'enter_title_here', 'change_default_title' );
+
+  //本文プレイスホルダーテキストを変更(クリックしたら戻る)
+  function mytheme_write_your_story( $text, $post ) {
+    return "ここに記事の本文を入力してください";
+  }
+  add_filter( 'write_your_story', 'mytheme_write_your_story', 10, 2 );
+
+  /*=================================================================
+      アーカイブの表示件数変更
+  ==================================================================*/
+  function change_per_page($query) {
+    if ( is_admin() || ! $query->is_main_query() ) {
+      return;
+    }
+    if ( $query->is_post_type_archive('campaign') ) {
+      $query->set( 'posts_per_page', '4' ); // 表示件数
+      return;
+    }
+    if ( $query->is_post_type_archive('voice') ) {
+      $query->set( 'posts_per_page', '6' ); // 表示件数
+      return;
+    }
+    //カスタムタクソノミーのタームのアーカイブ表示件数変更
+    if ( $query->is_tax('campaign_category') ) {
+      $query->set( 'posts_per_page', '4' ); // 表示件数
+      return;
+    }
+    if ( $query->is_tax('voice_category') ) {
+      $query->set( 'posts_per_page', '6' ); // 表示件数
+      return;
+    }
+  }
+  add_action( 'pre_get_posts', 'change_per_page' );
+
+  /*=================================================================
+      サイドバーの人気記事の表示(プラグイン不使用)
   ==================================================================*/
   //クローラーのアクセス判別
   function is_bot() {

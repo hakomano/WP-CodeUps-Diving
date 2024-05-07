@@ -114,18 +114,18 @@
                         // グループフィールドを取得
                         $campaignPrice = get_field('campaign_price');
                         // グループフィールド内の「通常価格」フィールドを取得
-                        $normalPrice = $campaignPrice['normal_price'];
+                        $originalPrice = $campaignPrice['original_price'];
                         // グループフィールド内の「キャンペーン価格」フィールドを取得
-                        $discountPrice = $campaignPrice['discount_price'];
+                        $cutPrice = $campaignPrice['cut_price'];
                       ?>
-                      <?php if ( $normalPrice ): ?>
+                      <?php if ( $originalPrice ): ?>
                       <p class="campaign-card__original-price">
-                        &yen;<?php echo esc_html( number_format($normalPrice) ); ?>
+                        &yen;<?php echo esc_html( number_format($originalPrice) ); ?>
                       </p>
                       <?php endif;?>
-                      <?php if ( $discountPrice ): ?>
+                      <?php if ( $cutPrice ): ?>
                       <p class="campaign-card__cut-price">
-                        &yen;<?php echo esc_html( number_format($discountPrice) ); ?>
+                        &yen;<?php echo esc_html( number_format($cutPrice) ); ?>
                       </p>
                       <?php endif;?>
                     </div>

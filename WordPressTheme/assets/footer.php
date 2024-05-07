@@ -80,7 +80,7 @@
       <div class="footer__sns">
         <?php
           // グループフィールドを取得
-          $snsLink = get_field('sns_links','26');
+          $snsLink = get_field('sns_links','8');
           // グループフィールド内の「フェイスブックリンク」フィールドを取得
           $fbLink = $snsLink['facebook_link'];
           // グループフィールド内の「インスタリンク」フィールドを取得
