@@ -2070,6 +2070,10 @@ main {
 	margin-top: 0.8125rem;
 }
 
+.nav-list__items + .nav-list__items--sp-margin {
+	margin-top: 0;
+}
+
 .nav-list__item a {
 	display: block;
 	font-size: 1rem;
@@ -2103,6 +2107,12 @@ main {
 
 .nav-list__child {
 	margin-left: 1.375rem;
+}
+
+.nav-list__child-item--indent a {
+	display: block;
+	margin-left: 1.6em;
+	text-indent: -1.6em;
 }
 
 /* サイトマップページのナビ */
@@ -4043,11 +4053,20 @@ html {
 	flex-direction: row;
 }
 
+.nav-list__items + .nav-list__items--sp-margin {
+	margin-top: 0.8125rem;
+}
+
 .nav-list__item a {
 	padding: 0.75rem 0.625rem;
 }
 
 .nav-list__item--indent a {
+	margin-left: 0;
+	text-indent: 0;
+}
+
+.nav-list__child-item--indent a {
 	margin-left: 0;
 	text-indent: 0;
 }

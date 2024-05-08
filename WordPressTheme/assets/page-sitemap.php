@@ -72,16 +72,21 @@ get_header();
                   <a href="<?php echo esc_url( home_url( '/blog' ) ); ?>">ブログ</a>
                 </li>
               </ul>
-            </div>
-          </div>
-          <div class="nav-list__right">
-            <div class="nav-list__box">
-              <ul class="nav-list__items">
+              <ul class="nav-list__items u-mobile">
                 <li class="nav-list__item nav-list__item--map">
                   <a href="<?php echo esc_url( home_url( '/voice' ) ); ?>">お客様の声</a>
                 </li>
               </ul>
-              <ul class="nav-list__items">
+            </div>
+          </div>
+          <div class="nav-list__right">
+            <div class="nav-list__box">
+              <ul class="nav-list__items u-desktop">
+                <li class="nav-list__item">
+                  <a href="<?php echo esc_url( home_url( '/voice' )); ?>">お客様の声</a>
+                </li>
+              </ul>
+              <ul class="nav-list__items nav-list__items--sp-margin">
                 <li class="nav-list__item nav-list__item--map">
                   <a href="<?php echo esc_url( home_url( '/price' ) ); ?>">料金一覧</a>
                   <ul class="nav-list__child">
@@ -94,6 +99,10 @@ get_header();
                     <li class="nav-list__child-item">
                       <a href="<?php echo esc_url( home_url( '/price#price-experience' ) ); ?>">ファンダイビング</a>
                     </li>
+                    <li class="nav-list__child-item nav-list__child-item--indent">
+                      <a href="<?php echo esc_url( home_url( '/price#price-spdiving' )); ?>">スペシャル<br class="u-mobile">
+                        ダイビング</a>
+                    </li>
                   </ul>
                 </li>
               </ul>
@@ -102,6 +111,11 @@ get_header();
               <ul class="nav-list__items">
                 <li class="nav-list__item nav-list__item--map">
                   <a href="<?php echo esc_url( home_url( '/faq' ) ); ?>">よくある質問</a>
+                </li>
+              </ul>
+              <ul class="nav-list__items">
+                <li class="nav-list__item nav-list__item--map">
+                  <a href="<?php echo esc_url( home_url( '/sitemap' )); ?>">サイトマップ</a>
                 </li>
               </ul>
               <ul class="nav-list__items">

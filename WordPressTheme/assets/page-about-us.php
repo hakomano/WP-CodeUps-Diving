@@ -48,10 +48,9 @@ get_header();
           <div class="about-content__text-content about-content__text-content--btn-none">
             <h2 class="about-content__title about-content__title--sub-sp">Dive into<br>the Ocean</h2>
             <div class="about-content__textarea">
-              <p class="about-content__text">
-                ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br>
-                ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-              </p>
+              <div class="about-content__text">
+                <?php the_content(); ?>
+              </div>
             </div>
           </div>
         </div>

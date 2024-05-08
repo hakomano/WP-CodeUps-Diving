@@ -179,10 +179,14 @@
         <div class="about-content__text-content">
           <h3 class="about-content__title">Dive into<br>the Ocean</h3>
           <div class="about-content__textarea">
-            <p class="about-content__text">
-              ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br>
-              ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-            </p>
+            <div class="about-content__text">
+              <?php
+                $page_id = get_page_by_path('about-us'); //固定ページのスラッグ名
+                $page = get_post( $page_id );
+                $content = $page -> post_content;  //固定ページの本文を取得
+                echo apply_filters('the_content', $content);
+              ?>
+            </div>
             <div class="about-content__btn">
               <a href="<?php echo esc_url( home_url( '/about-us' ) ); ?>" class="button">
                 <div></div><span>view more</span>

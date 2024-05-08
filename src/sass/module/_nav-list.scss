@@ -28,6 +28,14 @@
   margin-top: rem(13);
 }
 
+.nav-list__items + .nav-list__items--sp-margin{
+  margin-top: 0;
+
+  @include mq(md){
+    margin-top: rem(13);
+  }
+}
+
 .nav-list__item a{
   display: block;
   padding: rem(12) rem(8);
@@ -70,6 +78,17 @@
 
 .nav-list__child {
   margin-left: rem(22);
+}
+
+.nav-list__child-item--indent a{
+  display: block;
+  text-indent: -1.6em;
+  margin-left: 1.6em;
+
+  @include mq(md){
+    text-indent: 0;
+    margin-left: 0;
+  }
 }
 
 /* サイトマップページのナビ */

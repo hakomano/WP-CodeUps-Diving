@@ -18,15 +18,39 @@
         </div>
         <hr>
         <div class="cta__info-flex">
+          <?php
+          // グループフィールドを取得
+          $ctaInfo = get_field('cta_info','8');
+          // グループフィールド内の「住所」フィールドを取得
+          $add = $ctaInfo['add'];
+          // グループフィールド内の「電話番号」フィールドを取得
+          $tel = $ctaInfo['tel'];
+          // グループフィールド内の「営業開始時間」フィールドを取得
+          $openHours = $ctaInfo['open_hours'];
+          // グループフィールド内の「営業終了時間」フィールドを取得
+          $closeHours = $ctaInfo['close_hours'];
+          // グループフィールド内の「定休日」フィールドを取得
+          $holiday = $ctaInfo['holiday'];
+        ?>
           <div class="cta__info-detail">
+            <?php if ( $add ): ?>
             <address>
-              <p>沖縄県那覇市1-1</p>
+              <p><?php echo esc_html( $add ); ?></p>
             </address>
-            <address><a href="tel:0120-000-0000">
-                <p>TEL:<span>0120-000-0000</span></p>
-              </a></address>
-            <p>営業時間:<span>8:30-19:00</span></p>
-            <p>定休日:<span>毎週火曜日</span></p>
+            <?php endif;?>
+            <?php if ( $tel ): ?>
+            <address>
+              <a href="tel:<?php echo esc_html( $tel ); ?>">
+                <p>TEL:<span><?php echo esc_html( $tel ); ?></span></p>
+              </a>
+            </address>
+            <?php endif;?>
+            <?php if ( $openHours && $closeHours ): ?>
+            <p>営業時間:<span><?php echo esc_html( $openHours ); ?>-<?php echo esc_html( $closeHours ); ?></span></p>
+            <?php endif;?>
+            <?php if ( $holiday ): ?>
+            <p>定休日:<span><?php echo esc_html( $holiday ); ?></span></p>
+            <?php endif;?>
           </div>
           <div class="cta__info-map">
             <?php
@@ -155,16 +179,21 @@
               <a href="<?php echo esc_url( home_url( '/blog' )); ?>">ブログ</a>
             </li>
           </ul>
-        </div>
-      </div>
-      <div class="nav-list__right">
-        <div class="nav-list__box">
-          <ul class="nav-list__items">
+          <ul class="nav-list__items u-mobile">
             <li class="nav-list__item">
               <a href="<?php echo esc_url( home_url( '/voice' )); ?>">お客様の声</a>
             </li>
           </ul>
-          <ul class="nav-list__items">
+        </div>
+      </div>
+      <div class="nav-list__right">
+        <div class="nav-list__box">
+          <ul class="nav-list__items u-desktop">
+            <li class="nav-list__item">
+              <a href="<?php echo esc_url( home_url( '/voice' )); ?>">お客様の声</a>
+            </li>
+          </ul>
+          <ul class="nav-list__items nav-list__items--sp-margin">
             <li class="nav-list__item">
               <a href="<?php echo esc_url( home_url( '/price' )); ?>">料金一覧</a>
               <ul class="nav-list__child">
@@ -177,6 +206,10 @@
                 <li class="nav-list__child-item">
                   <a href="<?php echo esc_url( home_url( '/price#price-experience' )); ?>">ファンダイビング</a>
                 </li>
+                <li class="nav-list__child-item nav-list__child-item--indent">
+                  <a href="<?php echo esc_url( home_url( '/price#price-spdiving' )); ?>">スペシャル<br
+                      class="u-mobile">ダイビング</a>
+                </li>
               </ul>
             </li>
           </ul>
@@ -185,6 +218,11 @@
           <ul class="nav-list__items">
             <li class="nav-list__item">
               <a href="<?php echo esc_url( home_url( '/faq' )); ?>">よくある質問</a>
+            </li>
+          </ul>
+          <ul class="nav-list__items">
+            <li class="nav-list__item">
+              <a href="<?php echo esc_url( home_url( '/sitemap' )); ?>">サイトマップ</a>
             </li>
           </ul>
           <ul class="nav-list__items">
