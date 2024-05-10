@@ -190,6 +190,51 @@
   add_filter( 'write_your_story', 'change_default_placeholder', 10, 2 );
 
   /*=================================================================
+      【管理画面】通常投稿一覧画面カスタマイズ
+  ==================================================================*/
+  /* 投稿一覧に最終更新日の列を表示(並び替えも可) */
+  // 最終更新日の列を作成
+  function aco_last_modified_admin_column( $columns ) {
+    $columns['modified-last'] =__( '最終更新日', 'aco' );
+    return $columns;
+  }
+  add_filter( 'manage_edit-post_columns', 'aco_last_modified_admin_column' );
+
+  // 最終更新した時間で記事を並べ替える
+  function aco_sortable_last_modified_column( $columns ) {
+    $columns['modified-last'] = 'modified';
+    return $columns;
+  }
+  add_filter( 'manage_edit-post_sortable_columns', 'aco_sortable_last_modified_column' );
+
+  // 出力をフォーマット
+  function aco_last_modified_admin_column_content( $column_name, $post_id ) {
+    if ( 'modified-last' != $column_name )
+      return;
+
+    $modified_date   = the_modified_date( 'Y年Md日' );
+
+    echo $modified_date;
+  }
+  add_action( 'manage_posts_custom_column', 'aco_last_modified_admin_column_content', 10, 2 );
+
+
+  /* ブログ一覧カラムの順序を変更 */
+  function blog_sort_column($columns){
+    $columns = array(
+      'cb' => '<input id="cb-select-all-1" type="checkbox">',
+      'title' => '記事タイトル',
+      'date' => '投稿日時',
+      'modified-last' => '最終更新日',
+      'author' => '投稿者',
+      'thumbnail' => 'アイキャッチ',
+      'post_views_count' => '閲覧数'
+    );
+    return $columns;
+  }
+  add_filter( 'manage_posts_columns', 'blog_sort_column');
+
+  /*=================================================================
       【管理画面】カスタム投稿一覧画面カスタマイズ
   ==================================================================*/
   /* キャンペーン一覧のカテゴリー絞り込みフィルター追加 */
@@ -248,6 +293,42 @@
   }
   add_action('manage_campaign_posts_custom_column', 'add_campaign_posts_column_id', 10, 2);
 
+  //投稿一覧に表示するカスタムフィールドのカラム名を指定
+  function add_posts_columns($columns){
+    $columns['campaign_period'] = '開催期間';
+    return $columns;
+  }
+  add_filter('manage_campaign_posts_columns', 'add_posts_columns');
+
+
+  // 投稿一覧にカスタムフィールドのカラムを追加する
+  function campaign_custom_posts_column( $column_name, $post_id ) {
+    if ( $column_name == 'campaign_period' ) {
+      // グループフィールドを取得
+      $campaignPeriod = get_field('campaign_period', $post_id);
+      // グループフィールド内の「開始日」フィールドを取得
+      $startDate = $campaignPeriod['start_date'];
+      // グループフィールド内の「終了日」フィールドを取得
+      $endDate = $campaignPeriod['end_date'];
+      //開始日と終了日から年を取得
+      $startYear = date('Y', strtotime($startDate));
+      $endYear = date('Y', strtotime($endDate));
+
+      if ( $startDate ){
+        echo esc_html( date('Y.n/j', strtotime($startDate)) .' - ' );
+      }
+      if ( $endDate ){
+        if ( $startYear === $endYear ) {
+          echo esc_html( date('n/j', strtotime($endDate)) );
+        } else {
+          echo  esc_html( date('Y.n/j', strtotime($endDate)) );
+        }
+      }
+    }
+  }
+  add_filter('manage_campaign_posts_custom_column', 'campaign_custom_posts_column', 10, 2);
+
+
   /* お客様の声一覧にカテゴリー欄を追加 */
   function add_voice_posts_column( $defaults ) {
     $defaults['voice_category'] = 'カテゴリー'; //'voice_cat'はタクソノミー名
@@ -270,10 +351,13 @@
   /* キャンペーン一覧カラムの順序を変更 */
   function campaign_sort_column($columns){
     $columns = array(
+      'cb' => '<input id="cb-select-all-1" type="checkbox">',
       'title' => '記事タイトル',
       'taxonomy-campaign_category' => 'カテゴリー',
+      'campaign_period' => '開催期間',
       'date' => '投稿日時',
-      'thumbnail' => 'アイキャッチ'
+      'thumbnail' => 'アイキャッチ',
+      'post_views_count' => '閲覧数'
     );
     return $columns;
   }
@@ -282,6 +366,7 @@
   /* お客様の声一覧カラムの順序を変更 */
   function voice_sort_column($columns){
     $columns = array(
+      'cb' => '<input id="cb-select-all-1" type="checkbox">',
       'title' => '記事タイトル',
       'taxonomy-voice_category' => 'カテゴリー',
       'date' => '投稿日時',
@@ -290,6 +375,16 @@
     return $columns;
   }
   add_filter( 'manage_voice_posts_columns', 'voice_sort_column');
+
+  /*=================================================================
+      【管理画面】固定ページのカスタマイズ
+  ==================================================================*/
+  // 固定ページの不要な項目を非表示にする
+  function my_remove_post_editor_support() {
+    remove_post_type_support( 'page', 'thumbnail' ); // アイキャッチ非表示
+  }
+  add_action( 'init' , 'my_remove_post_editor_support' );
+
 
 
   /*=================================================================
@@ -391,3 +486,76 @@
     }
   }
   add_action('manage_posts_custom_column', 'add_column', 10, 2);
+
+
+
+
+  /*=================================================================
+      ダッシュボードカスタマイズ
+  ==================================================================*/
+
+  //新しいウィジェットを追加する①
+  function add_dashboard_widgets1() {
+    wp_add_dashboard_widget(
+      'quick_action_dashboard_widget', // ウィジェットのスラッグ名
+      'ショートカットリンク', // ウィジェットに表示するタイトル
+      'dashboard_widget_function1' // 実行する関数
+    );
+  }
+  add_action( 'wp_dashboard_setup', 'add_dashboard_widgets1' );
+
+  //ウィジェットに表示するHTMLを定義する
+  function dashboard_widget_function1() {
+    echo '<ul class="custom_widget">
+            <a href="post-new.php"><li><p>新しく記事を書く</p><div class="dashicons dashicons-edit"></div><p class="post-name"><span>●-- ブログ --●</span></p></li></a>
+            <a href="post-new.php?post_type=campaign"><li><p>新しく記事を書く</p><div class="dashicons dashicons-megaphone"></div><p class="post-name"><span>●-- キャンペーン --●</span></p></li></a>
+            <a href="post-new.php?post_type=voice"><li><p>新しく記事を書く</p><div class="dashicons dashicons-format-status"></div><p class="post-name"><span>●-- お客様の声 --●</span></p></li></a>
+            <a href="post.php?post=35&action=edit"><li><p>料金の変更</p><div class="dashicons dashicons-calculator"></div><p class="post-name"><span>●-- コース料金表 --●</span></li></a>
+            <a href="post.php?post=38&action=edit"><li><p>FAQ 追加</p><div class="dashicons dashicons-editor-help"></div><p class="post-name"><span>●-- よくある質問 --●</span></li></a>
+            <a href="post.php?post=8&action=edit"><li><p>基本設定</p><div class="dashicons dashicons-admin-generic"></div><p class="post-name"><span>●-- SNS・店情報 --●</span></li></a>
+          </ul>';
+  }
+
+  //新しいウィジェットを追加する②
+  function add_dashboard_widgets2() {
+    wp_add_dashboard_widget(
+      'request_dashboard_widget', // ウィジェットのスラッグ名
+      '記事投稿に関するお願い', // ウィジェットに表示するタイトル
+      'dashboard_widget_function2' // 実行する関数
+    );
+  }
+  add_action( 'wp_dashboard_setup', 'add_dashboard_widgets2' );
+
+  //ウィジェットに表示するHTMLを定義する
+  function dashboard_widget_function2(){
+    echo '<div class="request_widget">
+    <h3><div class="dashicons dashicons-tag"></div>カテゴリー・タグについて</h3>
+    <p>各投稿に設定する<strong>カテゴリーやタグのスラッグ</strong>はカテゴリー(タグ)別一覧ページにてタイトル下の英表記サブタイトルとして使用しています。そのため<span>カテゴリーやタグを作成した際はスラッグの設定</span>も同時にお願いします。</p>
+    <img src="'.get_theme_file_uri( '/images/admin/category_slug-title.webp' ).'" alt="">
+    <details>
+      <summary>カテゴリー・タグ設定方法</summary>
+      <div class="detail_area">
+        <p>👇赤枠のスラッグの欄に英数字ハイフンで入力し、追加ボタンを押してください</p>
+        <img src="'.get_theme_file_uri( '/images/admin/category_title-admin.webp' ).'" alt="">
+      </div>
+    </details>
+    <ul>
+      <li><a href="edit-tags.php?taxonomy=category"><div class="dashicons dashicons-admin-links"></div>投稿：ご案内【カテゴリー】設定へ</a></li>
+      <li><a href="edit-tags.php?taxonomy=animals_category&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【動物名】設定へ</a></li>
+      <li><a href="edit-tags.php?taxonomy=animals_tag&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【現状・イベント】設定へ</a></li>
+      <li><a href="edit-tags.php?taxonomy=charm_points&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【特徴・特性】設定へ (任意)</a></li>
+    </ul>
+    
+    <p class="no-slug">※スラッグ未設定の場合は、その記事の投稿タイプ(種類)のスラッグを表示します</p>
+    <img src="'.get_theme_file_uri( '/images/admin/no-slug.webp' ).'" alt="">
+    <p class="no-slug_handle">ご案内記事のカテゴリースラッグ未設定⇒【information】</p>
+    <p class="no-slug_handle">動物たち記事のカテゴリー(タグ)スラッグ未設定⇒【animals】</p>
+    
+          </div>';
+  }
+
+  // ダッシュボードにスタイルシートを読み込む
+  function custom_admin_enqueue(){
+    wp_enqueue_style('custom_admin_enqueue', get_theme_file_uri('/css/dashboard_styles.css'));
+  }
+  add_action( 'admin_enqueue_scripts', 'custom_admin_enqueue' );

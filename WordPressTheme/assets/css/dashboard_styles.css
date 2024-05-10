@@ -1,0 +1,355 @@
+@charset "UTF-8";
+
+/*=======================================================================
+    【管理画面】ダッシュボードのカスタマイズCSS
+========================================================================*/
+body.wp-admin{
+  background-color: #DDF0F1;
+}
+
+/* img {
+	display: block;
+	max-width: 100%;
+	width: 100%;
+} */
+
+/* ダッシュボード背景 */
+.wp-admin.index-php{
+  background-image: url(../images/common/logo-green.svg);
+  background-position: left 200px bottom 20px;
+  background-repeat: no-repeat;
+  background-size: 300px;
+}
+
+.wp-admin .postbox{
+  border-radius: 10px;
+  border: 3px solid #A2C2C4;
+}
+
+.wp-admin .postbox .postbox-header{
+  border-bottom:none;
+  background-color: #A2C2C4;
+}
+
+/* ダッシュボード追加ウィジェット① (ショートカットリンク) */
+.custom_widget{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+
+.custom_widget li{
+  padding-top: 10px;
+  padding-bottom: 4px;
+  background-color: #A2C2C4;
+  border-radius: 30px;
+}
+
+.custom_widget li p{
+  font-weight: bold;
+}
+
+#dashboard-widgets .dashicons{
+  width: auto;
+  font-size: 50px;
+  transition: transform 0.6s ease-in-out;
+}
+
+.custom_widget a{
+  text-decoration: none;
+}
+
+.custom_widget a:hover .dashicons{
+  transform:rotateY(180deg);
+}
+
+.post-name , .link-ttl{
+  margin-top: 40px;
+}
+
+
+/*=================================================================
+      【管理画面】投稿一覧画面カスタマイズ
+==================================================================*/
+/* ブログ投稿一覧 */
+.post-type-post .column-date, .post-type-post .column-modified-last, .post-type-post .column-author{
+  width: 15%;
+}
+
+.post-type-post .column-thumbnail, .post-type-campaign .column-thumbnail{
+  width: 10%;
+  text-align: center;
+}
+
+.post-type-post .column-post_views_count{
+  width: 5%;
+  text-align: center;
+}
+
+/* キャンペーン投稿一覧 */
+.post-type-campaign .column-date, .post-type-campaign .column-taxonomy-campaign_category, .post-type-campaign .column-campaign_period{
+  width: 15%;
+}
+
+.post-type-campaign .column-thumbnail{
+  width: 10%;
+  text-align: center;
+}
+
+.post-type-campaign .column-post_views_count{
+  width: 5%;
+  text-align: center;
+}
+
+/* お客様の声投稿一覧 */
+.post-type-voice .column-date, .post-type-voice .column-taxonomy-voice_category{
+  width: 15%;
+}
+
+.post-type-voice .column-thumbnail{
+  width: 10%;
+  text-align: center;
+}
+
+/*=================================================================
+      【管理画面】投稿画面カスタマイズ
+==================================================================*/
+/* サイドバーメニュータイトル */
+.edit-post-sidebar__panel .components-panel__body > .components-panel__body-title{
+  background-color: #A2C2C4;
+}
+
+.edit-post-sidebar__panel .components-panel__body > .components-panel__body-title .components-button{
+  font-weight: bold;
+}
+
+/* サイドメニュー：カテゴリー(キャンペーン・お客様の声投稿) */
+.post-type-campaign .editor-post-taxonomies__hierarchical-terms-list::before,
+.post-type-voice .editor-post-taxonomies__hierarchical-terms-list::before{
+  content: " 設定必須 ";
+  background-color: #C94800;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 10px;
+  padding: 5px 7px;
+  margin: 15px 0px;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* サイドメニュー：アイキャッチ(キャンペーン・お客様の声投稿) */
+.post-type-post .editor-post-featured-image::before,
+.post-type-campaign .editor-post-featured-image::before,
+.post-type-voice .editor-post-featured-image::before{
+  content: " 設定推奨 ";
+  background-color: #fa8072;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 10px;
+  padding: 5px 7px;
+  margin: 15px 0px;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.post-type-post .editor-post-featured-image::after,
+.post-type-campaign .editor-post-featured-image::after,
+.post-type-voice .editor-post-featured-image::after{
+  margin-top: 10px;
+  display: block;
+  content: "※画像の設定がない場合はNo Image用の画像が表示されます";
+  font-size: 12px;
+  color: gray;
+}
+
+
+.post-type-campaign #acf-group_66388f94615be .acf-fields.-top{
+  background: url(../images/sample/sample-campaign.webp) no-repeat;
+  background-size: contain;
+  background-position: top right 8px;
+}
+
+.post-type-voice #acf-group_66388cebd60c4 .acf-fields.-top{
+  background: url(../images/sample/sample-voice.webp) no-repeat;
+  background-size: contain;
+  background-position: top right 8px;
+}
+
+/*=================================================================
+      【管理画面】ACFカスタムフィールドカスタマイズ
+==================================================================*/
+/* ACFテーブル */
+.acf-table{
+  border: none;
+  border-spacing: 5px;
+}
+
+/* ACFテーブルヘッド */
+.acf-table > thead > tr > th{
+  background-color: #DDF0F1;
+}
+
+/* ACFテーブルヘッド内ラベル */
+.acf-table > tbody > tr > th > label, .acf-table > thead > tr > th > label{
+  font-weight: bold;
+  color: #408F95;
+}
+
+/* ACFテーブル線 */
+.acf-table > tbody > tr > th, .acf-table > tbody > tr > td, .acf-table > thead > tr > th, .acf-table > thead > tr > td{
+  border-style: none;
+}
+
+/* ACFプレイスホルダー */
+.acf-input input::placeholder{
+  color: #DDF0F1;
+}
+
+/* ACFフィールド名 */
+.acf-fields .acf-field .acf-label label{
+  font-weight: bold;
+}
+
+/* ACF説明文 */
+.acf-fields .acf-field p.description{
+  color: #C94800;
+}
+
+/*=================================================================
+      【管理画面】SCFカスタムフィールドカスタマイズ
+==================================================================*/
+/* SCFフィールド[ラベル] */
+.smart-cf-meta-box .smart-cf-meta-box-table th{
+  font-weight: bold;
+  color: #408F95;
+}
+
+/* SCFフィールド[手順]文 */
+.smart-cf-meta-box-table td .instruction{
+  color: #C94800;
+}
+
+/* SCF繰り返しフィールドテーブル */
+.smart-cf-meta-box-repeat-tables .smart-cf-meta-box-table{
+  border-bottom: 2px dashed #408F95; /* 区切り線 */
+}
+
+/* SCF繰り返しサブフィールドテーブル */
+.smart-cf-meta-box-repeat-tables table{
+  background-color: #DDF0F1;
+}
+
+/* SCF繰り返しフィールド用ボタン */
+.smart-cf-meta-box .smart-cf-meta-box-repeat-tables .smart-cf-repeat-btn{
+  margin-right: 10px;
+}
+
+/* SCF繰り返し追加＋ボタン */
+.dashicons-plus-alt::before{
+  color: #C94800;
+}
+
+/* SCF繰り返し追加ボタン説明 */
+.dashicons-plus-alt::after{
+  content: "追加";
+  margin-left: 5px;
+  font-size: 10px;
+  color: #C94800;
+  vertical-align: super;
+}
+
+/* SCF繰り返し削除✕ボタン */
+.dashicons-dismiss:before{
+  color: #3880C9;
+}
+
+/* SCF繰り返し追加ボタン説明 */
+.dashicons-dismiss::after{
+  content: "削除";
+  margin-left: 5px;
+  font-size: 10px;
+  color: #3880C9;
+  vertical-align: super;
+}
+
+/* SCFフィールドヘッド(特定箇所) */
+.edit-post-layout__metaboxes #smart-cf-custom-field-222 .postbox-header .hndle,
+.edit-post-layout__metaboxes #smart-cf-custom-field-223 .postbox-header .hndle,
+.edit-post-layout__metaboxes #smart-cf-custom-field-224 .postbox-header .hndle,
+.edit-post-layout__metaboxes #smart-cf-custom-field-225 .postbox-header .hndle{
+  cursor: pointer;
+}
+
+.edit-post-layout__metaboxes #smart-cf-custom-field-222 .postbox-header .hndle::before,
+.edit-post-layout__metaboxes #smart-cf-custom-field-223 .postbox-header .hndle::before,
+.edit-post-layout__metaboxes #smart-cf-custom-field-224 .postbox-header .hndle::before,
+.edit-post-layout__metaboxes #smart-cf-custom-field-225 .postbox-header .hndle::before{
+  content: " ① ";
+  color: #C94800;
+  font-weight: bold;
+  display: contents;
+}
+
+.edit-post-layout__metaboxes #smart-cf-custom-field-222 .postbox-header .hndle::after,
+.edit-post-layout__metaboxes #smart-cf-custom-field-223 .postbox-header .hndle::after,
+.edit-post-layout__metaboxes #smart-cf-custom-field-224 .postbox-header .hndle::after,
+.edit-post-layout__metaboxes #smart-cf-custom-field-225 .postbox-header .hndle::after{
+  content: " ※このコース内容を追加・修正する場合はこちらクリック";
+  color: #C94800;
+  font-size: 12px;
+  font-weight: 500;
+  display: contents;
+  margin-left: 10px;
+}
+
+/*=================================================================
+      【管理画面】CFSカスタムフィールドカスタマイズ
+==================================================================*/
+/* CFS繰り返しフィールド */
+.field .cfs_loop .cfs_loop_body.open{
+  background-color: #DDF0F1;
+}
+
+.field .cfs_loop .loop_wrapper{
+  border: 1px solid #408F95;
+}
+
+/* CFSフィールドヘッド(特定箇所) */
+#cfs_input_235 .postbox-header .hndle{
+  cursor: pointer;
+}
+
+#cfs_input_235 .postbox-header .hndle::before{
+  content: " ① ";
+  color: #C94800;
+  font-weight: bold;
+  display: contents;
+}
+
+#cfs_input_235 .postbox-header .hndle::after{
+  content: " ※新しくコース名・コース内容を追加・修正する場合はこちらクリック";
+  color: #C94800;
+  font-size: 12px;
+  font-weight: 500;
+  display: contents;
+  margin-left: 10px;
+}
+
+#cfs_input_235.cfs_input .cfs_loop label{
+  color: #408F95;
+}
+
+#cfs_input_235.cfs_input .field p.notes{
+  color: #C94800;
+}
