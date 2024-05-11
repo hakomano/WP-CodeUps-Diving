@@ -2682,26 +2682,28 @@ main {
 	cursor: pointer;
 	display: inline-block;
 	max-width: 100%;
-	padding: 0.9375rem 1rem;
 	position: relative;
 	width: 12.625rem;
 	z-index: 1;
+}
+
+.submit-btn span {
+	display: block;
+	height: 100%;
+	position: relative;
+	width: 100%;
 }
 
 .submit-btn__input {
 	color: #fff;
 	font-family: "Gotu", sans-serif;
 	font-size: 0.875rem;
-	line-height: 1.5714285714;
-	margin-right: 1rem;
-	padding-right: 2.5rem;
-	text-align: center;
+	height: 100%;
+	line-height: 1;
+	padding: 1.2rem 3.5rem;
+	text-align: left;
 	text-transform: capitalize;
-}
-
-.submit-btn span {
-	display: block;
-	position: relative;
+	width: 100%;
 }
 
 .submit-btn span::before,
@@ -2713,18 +2715,18 @@ main {
 .submit-btn span::before {
 	border-top: 0.0625rem solid #fff;
 	height: 0.625rem;
-	right: 2.5625rem;
-	top: 50%;
-	transform: translateY(-40%) rotate(45deg);
+	right: 3.5625rem;
+	top: 47%;
+	transform: translateY(-47%) rotate(45deg);
 	width: 0.625rem;
 }
 
 .submit-btn span::after {
 	background: #fff;
 	height: 0.0625rem;
-	right: 2.5rem;
-	top: 53%;
-	transform: translateY(-40%);
+	right: 3.5rem;
+	top: 48%;
+	transform: translateY(-48%);
 	width: 2.5rem;
 }
 
@@ -3508,6 +3510,7 @@ html {
 	height: auto;
 	left: calc(50% - min(48vw, 38.75rem));
 	max-width: 27.3125rem;
+	opacity: 0.7;
 	position: absolute;
 	width: 100%;
 }

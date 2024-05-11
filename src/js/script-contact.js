@@ -111,7 +111,7 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
   //========================================================*
   // お問い合わせフォームの必須項目チェック
   //========================================================*
-  $('.js-form').submit(function (event) {
+  $('.js-submit').click(function (event) {
     // エラーメッセージ要素を取得
     var errorMessage = $('.js-contact-error');
     var errorMessageCheck = $('.js-check-error');
@@ -126,7 +126,7 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
     $('input, textarea').on('input', function () {
       if ($(this).hasClass('error')) {
         $(this).removeClass('error'); // エラークラスを削除
-        $('input[name="entry"]').removeClass('error'); //チェックボックス１つ選択で全てのエラークラス削除
+        $('input[name="entry[]"]').removeClass('error'); //チェックボックス１つ選択で全てのエラークラス削除
       }
     });
 
@@ -134,7 +134,7 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
     var name = $('input[type="text"]').val().trim();
     var email = $('input[type="email"]').val().trim();
     var tel = $('input[type="tel"]').val().trim();
-    var message = $('textarea[name="message"]').val().trim();
+    var message = $('textarea[id="message"]').val().trim();
     var formValid = true;
     var formChecked = true;
     var formAgree = true;
@@ -153,19 +153,19 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
       formValid = false;
     }
     if (!message) {
-      $('textarea[name="message"]').addClass('error');
+      $('textarea[id="message"]').addClass('error');
       formValid = false;
     }
 
     // お問い合わせ項目のチェックボックス検証(1つ以上のチェック)
-    var entryChecked = $('input[name="entry"]:checked').length > 0;
+    var entryChecked = $('input[name="entry[]"]:checked').length > 0;
     if (!entryChecked) {
-      $('input[name="entry"]').addClass('error');
+      $('input[name="entry[]"]').addClass('error');
       formChecked = false;
     }
 
     // プライバシーポリシー同意のチェックボックス検証
-    var privacyChecked = $('input[name="agree"]:checked').length > 0;
+    var privacyChecked = $('input[id="agree"]:checked').length > 0;
     if (!privacyChecked) {
       formAgree = false;
     }
@@ -187,7 +187,7 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
       event.preventDefault();
       errorMessageAgree.show();
       $('.js-form').css('margin-top', '2.5rem');
-      $('input[name="agree"]').addClass('error');
+      $('input[id="agree"]').addClass('error');
       $("body,html").animate(
         {
           scrollTop: 400,
@@ -210,7 +210,7 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
       errorMessageAgree.hide();
       errorMessage.hide();
 
-      event.preventDefault(); // 送信できるようにする時は消す
+      // event.preventDefault(); // 送信できるようにする時は消す
     }
   });
 

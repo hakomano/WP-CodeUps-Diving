@@ -18,27 +18,26 @@
   }
   add_action('after_setup_theme', 'my_theme_setup');
 
-
   /*=================================================================
       CSS・JavaScript・jQuery・Swiper・Fontの読み込み
   ==================================================================*/
   function my_theme_script_init(){
-    // WordPressに含まれているjquery.jsを読み込まない
+    /* WordPressに含まれているjquery.jsを読み込まない */
     wp_deregister_script('jquery');
-    // jQueryの読み込み(注：バージョンアップ)
+    /* jQueryの読み込み(注：バージョンアップ) */
     wp_enqueue_script( 'jquery', '//code.jquery.com/jquery-3.6.0.js', array(), "3.6.0", true);
-    // Swiperの読み込み(注：バージョンアップ)
+    /* Swiperの読み込み(注：バージョンアップ) */
     wp_enqueue_style( 'swiper-style', '//cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11' );
     wp_enqueue_script( 'swiper-script', '//cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11', true );
-    // Google Fontsの読み込み(2つ以上ある場合は1つずつ書く)
+    /* Google Fontsの読み込み(2つ以上ある場合は1つずつ書く) */
     wp_enqueue_style( 'font-NotoSansJp', '//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap' );
     wp_enqueue_style( 'font-Gotu', '//fonts.googleapis.com/css2?family=Gotu&display=swap' );
     wp_enqueue_style( 'font-Lato', '//fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap' );
-    // inviewの読み込み
+    /* inviewの読み込み */
     wp_enqueue_script( 'inview-js', get_theme_file_uri('/js/jquery.inview.min.js'), array('jquery') , null, true );
-    // CSSの読み込み
+    /* CSSの読み込み */
     wp_enqueue_style( 'style-css', get_theme_file_uri('/css/style.css') , array(), '1.0.0' );
-    // 自作jsの読み込み(ページにより出し分け)
+    /* 自作jsの読み込み(ページにより出し分け) */
     if(is_front_page()){
       wp_enqueue_script( 'main-js', get_theme_file_uri('/js/script.js'), array('jquery') , '1.0.0', true );
     }elseif(is_page('contact')){
@@ -61,16 +60,15 @@
   }
   add_action( 'after_setup_theme', 'my_theme_remove_wpautop' );
 
-  // 抜粋の省略記号を「…」に変更する
+  /* 抜粋の省略記号を「…」に変更する */
   add_filter( 'excerpt_more', function( $more ){
     return '&hellip;';
   }, 999 );
 
-  // 抜粋の文字数制限を110から200に変更
+  /*  抜粋の文字数制限を110から200に変更 */
   add_filter( 'excerpt_length', function( $length ){
     return 150;
   }, 999 );
-
 
   /*=================================================================
       ビジュアルエディタ(TinyMCE)の整形無効
@@ -273,7 +271,6 @@
   }
   add_action( 'restrict_manage_posts', 'add_voice_taxonomy_restrict_filter' );
 
-
   /* キャンペーン一覧にカテゴリー欄を追加 */
   function add_campaign_posts_column( $defaults ) {
     $defaults['campaign_category'] = 'カテゴリー'; //'campaign_cat'はタクソノミー名
@@ -293,15 +290,14 @@
   }
   add_action('manage_campaign_posts_custom_column', 'add_campaign_posts_column_id', 10, 2);
 
-  //投稿一覧に表示するカスタムフィールドのカラム名を指定
+  /* キャンペーン一覧に開催期間欄を追加 */
   function add_posts_columns($columns){
     $columns['campaign_period'] = '開催期間';
     return $columns;
   }
   add_filter('manage_campaign_posts_columns', 'add_posts_columns');
 
-
-  // 投稿一覧にカスタムフィールドのカラムを追加する
+  // カスタムフィールドのカラムを追加する
   function campaign_custom_posts_column( $column_name, $post_id ) {
     if ( $column_name == 'campaign_period' ) {
       // グループフィールドを取得
@@ -327,7 +323,6 @@
     }
   }
   add_filter('manage_campaign_posts_custom_column', 'campaign_custom_posts_column', 10, 2);
-
 
   /* お客様の声一覧にカテゴリー欄を追加 */
   function add_voice_posts_column( $defaults ) {
@@ -384,8 +379,6 @@
     remove_post_type_support( 'page', 'thumbnail' ); // アイキャッチ非表示
   }
   add_action( 'init' , 'my_remove_post_editor_support' );
-
-
 
   /*=================================================================
       アーカイブの表示件数変更
@@ -455,7 +448,7 @@
   }
   add_action('wp_head', 'set_post_views');
 
-  /*管理画面のカラムを追加*/
+  /* 管理画面のカラムを追加 */
   function manage_posts_columns($columns) {
     $columns['post_views_count'] = 'view数';
     $columns['thumbnail'] = 'アイキャッチ';
@@ -464,14 +457,14 @@
   }
   add_filter('manage_posts_columns', 'manage_posts_columns');
 
-  /*アクセス数を出力*/
+  /* アクセス数を出力 */
   function add_column($column_name, $post_id) {
-    /*View数呼び出し*/
+    /* View数呼び出し */
     if ($column_name === 'post_views_count') {
       $pv = get_post_meta($post_id, 'post_views_count', true);
     }
 
-    /*アイキャッチ呼び出し*/
+    /* アイキャッチ呼び出し */
     if ($column_name === 'thumbnail') {
       $thumb = get_the_post_thumbnail($post_id, array(100, 100), 'thumbnail');
     }
@@ -487,14 +480,71 @@
   }
   add_action('manage_posts_custom_column', 'add_column', 10, 2);
 
+  /*=================================================================
+      Contact Form 7
+  ==================================================================*/
+  /* CF7で自動挿入されるPタグ、brタグを削除 */
+  add_filter('wpcf7_autop_or_not', 'wpcf7_autop_return_false');
+  function wpcf7_autop_return_false() {
+    return false;
+  }
 
+  /* 自動生成されるformタグにclass名を追加 */
+  function my_wpcf7_form_class_attr($class) {
+    $my_class = "sub-contact__form contact-form js-form " . $class;
+    return $my_class;
+  }
+  add_filter('wpcf7_form_class_attr','my_wpcf7_form_class_attr', 10, 2);
 
+  /* ドロップダウンメニューの選択肢をキャンペーン記事のタイトルから自動生成 */
+  function campaign_selectlist ( $tag, $unused ) {
+    if ( $tag['name'] != 'select_campaign' )  // CF7フィールド名（独自のフォームタグ名）
+      return $tag;
+    $args = array (
+      'posts_per_page' => -1, // 全件取得（制限が必要な場合は数値を指定）
+      'post_type' => 'campaign', // カスタム投稿スラッグ
+      'post_status' => 'publish', // 公開のみ
+      // 'orderby' => 'ID', // 並び順(指定しなければ投稿日順)
+      'order' => 'ASC', // 昇順
+    );
+    $custom_posts = get_posts($args);
+    if ( ! $custom_posts )
+      return $tag;
+    foreach ( $custom_posts as $custom_post ) {
+      $tag['raw_values'][] = $custom_post->post_title;
+      $tag['values'][] = $custom_post->post_title;
+      $tag['labels'][] = $custom_post->post_title;
+    }
+    return $tag;
+  }
+  add_filter( 'wpcf7_form_tag', 'campaign_selectlist', 30, 2);
+
+  /* CF7の送信ボタンをクリックした後の遷移先設定 */
+  add_action( 'wp_footer', 'add_origin_thanks_page' );
+  function add_origin_thanks_page() {
+  $thanks = home_url('/contact-thanks');
+    echo <<< EOC
+      <script>
+        var thanksPage = {
+          163 : '{$thanks}',
+        };
+      document.addEventListener( 'wpcf7mailsent', function( event ) {
+        location = thanksPage[event.detail.contactFormId];
+      }, false );
+      </script>
+    EOC;
+  }
 
   /*=================================================================
       ダッシュボードカスタマイズ
   ==================================================================*/
+  /* ダッシュボードにスタイルシートを読み込む */
+  function custom_admin_enqueue(){
+    wp_enqueue_style('custom_admin_enqueue', get_theme_file_uri('/css/dashboard_styles.css'));
+  }
+  add_action( 'admin_enqueue_scripts', 'custom_admin_enqueue' );
 
-  //新しいウィジェットを追加する①
+  /* 新しいウィジェットを追加する① */
   function add_dashboard_widgets1() {
     wp_add_dashboard_widget(
       'quick_action_dashboard_widget', // ウィジェットのスラッグ名
@@ -504,7 +554,7 @@
   }
   add_action( 'wp_dashboard_setup', 'add_dashboard_widgets1' );
 
-  //ウィジェットに表示するHTMLを定義する
+  /* ウィジェットに表示するHTMLを定義する */
   function dashboard_widget_function1() {
     echo '<ul class="custom_widget">
             <a href="post-new.php"><li><p>新しく記事を書く</p><div class="dashicons dashicons-edit"></div><p class="post-name"><span>●-- ブログ --●</span></p></li></a>
@@ -516,46 +566,92 @@
           </ul>';
   }
 
-  //新しいウィジェットを追加する②
-  function add_dashboard_widgets2() {
-    wp_add_dashboard_widget(
-      'request_dashboard_widget', // ウィジェットのスラッグ名
-      '記事投稿に関するお願い', // ウィジェットに表示するタイトル
-      'dashboard_widget_function2' // 実行する関数
-    );
-  }
-  add_action( 'wp_dashboard_setup', 'add_dashboard_widgets2' );
+  // //新しいウィジェットを追加する②
+  // function add_dashboard_widgets2() {
+  //   wp_add_dashboard_widget(
+  //     'request_dashboard_widget', // ウィジェットのスラッグ名
+  //     '記事投稿に関するお願い', // ウィジェットに表示するタイトル
+  //     'dashboard_widget_function2' // 実行する関数
+  //   );
+  // }
+  // add_action( 'wp_dashboard_setup', 'add_dashboard_widgets2' );
 
-  //ウィジェットに表示するHTMLを定義する
-  function dashboard_widget_function2(){
-    echo '<div class="request_widget">
-    <h3><div class="dashicons dashicons-tag"></div>カテゴリー・タグについて</h3>
-    <p>各投稿に設定する<strong>カテゴリーやタグのスラッグ</strong>はカテゴリー(タグ)別一覧ページにてタイトル下の英表記サブタイトルとして使用しています。そのため<span>カテゴリーやタグを作成した際はスラッグの設定</span>も同時にお願いします。</p>
-    <img src="'.get_theme_file_uri( '/images/admin/category_slug-title.webp' ).'" alt="">
-    <details>
-      <summary>カテゴリー・タグ設定方法</summary>
-      <div class="detail_area">
-        <p>👇赤枠のスラッグの欄に英数字ハイフンで入力し、追加ボタンを押してください</p>
-        <img src="'.get_theme_file_uri( '/images/admin/category_title-admin.webp' ).'" alt="">
-      </div>
-    </details>
-    <ul>
-      <li><a href="edit-tags.php?taxonomy=category"><div class="dashicons dashicons-admin-links"></div>投稿：ご案内【カテゴリー】設定へ</a></li>
-      <li><a href="edit-tags.php?taxonomy=animals_category&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【動物名】設定へ</a></li>
-      <li><a href="edit-tags.php?taxonomy=animals_tag&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【現状・イベント】設定へ</a></li>
-      <li><a href="edit-tags.php?taxonomy=charm_points&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【特徴・特性】設定へ (任意)</a></li>
-    </ul>
+  // //ウィジェットに表示するHTMLを定義する
+  // function dashboard_widget_function2(){
+  //   echo '<div class="request_widget">
+  //   <h3><div class="dashicons dashicons-tag"></div>カテゴリー・タグについて</h3>
+  //   <p>各投稿に設定する<strong>カテゴリーやタグのスラッグ</strong>はカテゴリー(タグ)別一覧ページにてタイトル下の英表記サブタイトルとして使用しています。そのため<span>カテゴリーやタグを作成した際はスラッグの設定</span>も同時にお願いします。</p>
+  //   <img src="'.get_theme_file_uri( '/images/admin/category_slug-title.webp' ).'" alt="">
+  //   <details>
+  //     <summary>カテゴリー・タグ設定方法</summary>
+  //     <div class="detail_area">
+  //       <p>👇赤枠のスラッグの欄に英数字ハイフンで入力し、追加ボタンを押してください</p>
+  //       <img src="'.get_theme_file_uri( '/images/admin/category_title-admin.webp' ).'" alt="">
+  //     </div>
+  //   </details>
+  //   <ul>
+  //     <li><a href="edit-tags.php?taxonomy=category"><div class="dashicons dashicons-admin-links"></div>投稿：ご案内【カテゴリー】設定へ</a></li>
+  //     <li><a href="edit-tags.php?taxonomy=animals_category&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【動物名】設定へ</a></li>
+  //     <li><a href="edit-tags.php?taxonomy=animals_tag&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【現状・イベント】設定へ</a></li>
+  //     <li><a href="edit-tags.php?taxonomy=charm_points&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【特徴・特性】設定へ (任意)</a></li>
+  //   </ul>
     
-    <p class="no-slug">※スラッグ未設定の場合は、その記事の投稿タイプ(種類)のスラッグを表示します</p>
-    <img src="'.get_theme_file_uri( '/images/admin/no-slug.webp' ).'" alt="">
-    <p class="no-slug_handle">ご案内記事のカテゴリースラッグ未設定⇒【information】</p>
-    <p class="no-slug_handle">動物たち記事のカテゴリー(タグ)スラッグ未設定⇒【animals】</p>
+  //   <p class="no-slug">※スラッグ未設定の場合は、その記事の投稿タイプ(種類)のスラッグを表示します</p>
+  //   <img src="'.get_theme_file_uri( '/images/admin/no-slug.webp' ).'" alt="">
+  //   <p class="no-slug_handle">ご案内記事のカテゴリースラッグ未設定⇒【information】</p>
+  //   <p class="no-slug_handle">動物たち記事のカテゴリー(タグ)スラッグ未設定⇒【animals】</p>
     
-          </div>';
-  }
+  //         </div>';
+  // }
 
-  // ダッシュボードにスタイルシートを読み込む
-  function custom_admin_enqueue(){
-    wp_enqueue_style('custom_admin_enqueue', get_theme_file_uri('/css/dashboard_styles.css'));
+  /*=================================================================
+      ログイン画面カスタマイズ
+  ==================================================================*/
+  /* ログイン画面のロゴ変更 */
+  function custom_login_logo() {
+    echo '<style type="text/css">
+      body{
+        background-color: #DDF0F1;
+      }
+      .login #login-message, .login #loginform{
+        border: 3px solid #408F95;
+        border-radius: 10px;
+      }
+      .login input[type=text], .login input[type=password]{
+        background-color: #A2C2C4;
+        border: none;
+        border-radius: 5px;
+      }
+      .login input[type=text]:focus, .login input[type=password]:focus{
+        outline: 2px solid #408F95;
+      }
+      .login h1 a {
+        display: block;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url('.get_theme_file_uri( '/images/common/logo-green.svg' ).');
+        width: 300px;
+      }
+      .wp-core-ui .button-primary{
+        background-color: #A2C2C4;
+        border: none;
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      .login input[type=checkbox]{
+        border: 2px solid #408F95;
+        border-radius: 5px;
+      }
+      .login p.submit{
+        margin-top: 20px;
+      }
+    </style>'.PHP_EOL;
   }
-  add_action( 'admin_enqueue_scripts', 'custom_admin_enqueue' );
+  add_action( 'login_head', 'custom_login_logo' );
+
+
+  /* ログイン画面のロゴURL */
+  function custom_login_logo_url() {
+    return esc_url( home_url( '/' ) );
+  }
+  add_filter( 'login_headerurl', 'custom_login_logo_url' );

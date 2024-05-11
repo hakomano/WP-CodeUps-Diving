@@ -143,7 +143,7 @@ body.wp-admin{
   display: inline-block;
 }
 
-/* サイドメニュー：アイキャッチ(キャンペーン・お客様の声投稿) */
+/* サイドメニュー：アイキャッチ(ブログ・キャンペーン・お客様の声投稿) */
 .post-type-post .editor-post-featured-image::before,
 .post-type-campaign .editor-post-featured-image::before,
 .post-type-voice .editor-post-featured-image::before{
@@ -173,13 +173,14 @@ body.wp-admin{
   color: gray;
 }
 
-
+/* 見本画像の表示(カスタムフィールド背景：キャンペーン) */
 .post-type-campaign #acf-group_66388f94615be .acf-fields.-top{
   background: url(../images/sample/sample-campaign.webp) no-repeat;
   background-size: contain;
   background-position: top right 8px;
 }
 
+/* 見本画像の表示(カスタムフィールド背景：お客様の声) */
 .post-type-voice #acf-group_66388cebd60c4 .acf-fields.-top{
   background: url(../images/sample/sample-voice.webp) no-repeat;
   background-size: contain;

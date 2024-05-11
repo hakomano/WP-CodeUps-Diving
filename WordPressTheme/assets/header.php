@@ -76,10 +76,10 @@
                         <a href="<?php echo esc_url( home_url( '/campaign_category/license' ) ); ?>">ライセンス講習</a>
                       </li>
                       <li class="nav-list__child-item">
-                        <a href="<?php echo esc_url( home_url( '/campaign_category/experience' ) ); ?>">体験ダイビング</a>
+                        <a href="<?php echo esc_url( home_url( '/campaign_category/fundiving' ) ); ?>">ファンダイビング</a>
                       </li>
                       <li class="nav-list__child-item">
-                        <a href="<?php echo esc_url( home_url( '/campaign_category/fundiving' ) ); ?>">ファンダイビング</a>
+                        <a href="<?php echo esc_url( home_url( '/campaign_category/experience' ) ); ?>">体験ダイビング</a>
                       </li>
                     </ul>
                   </li>
@@ -99,10 +99,10 @@
                         <a href="<?php echo esc_url( home_url( '/information#tab-1' ) ); ?>">ライセンス講習</a>
                       </li>
                       <li class="nav-list__child-item">
-                        <a href="<?php echo esc_url( home_url( '/information#tab-3' ) ); ?>">体験ダイビング</a>
+                        <a href="<?php echo esc_url( home_url( '/information#tab-2' ) ); ?>">ファンダイビング</a>
                       </li>
                       <li class="nav-list__child-item">
-                        <a href="<?php echo esc_url( home_url( '/information#tab-2' ) ); ?>">ファンダイビング</a>
+                        <a href="<?php echo esc_url( home_url( '/information#tab-3' ) ); ?>">体験ダイビング</a>
                       </li>
                     </ul>
                   </li>

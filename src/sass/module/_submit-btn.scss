@@ -4,8 +4,6 @@
   width: rem(202);
   max-width: 100%;
   display: inline-block; //blockではなくinline-blockの方が親要素で中央揃えなどの指定ができる
-
-  padding: rem(15) rem(16);
   border: rem(1) solid $accent-green;
   background: $accent-green;
   position: relative;
@@ -15,20 +13,23 @@
   cursor: pointer;
 }
 
+.submit-btn span{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .submit-btn__input{
   color: $white;
   font-size: rem(14);
   font-family: $english-font-family;
-  @include line-height(22,14);
-  text-align: center;
+  line-height: 1;
   text-transform: capitalize;
-  padding-right: rem(40);
-  margin-right: rem(16);
-}
-
-.submit-btn span{
-  position: relative;
-  display: block;
+  width: 100%;
+  height: 100%;
+  padding: rem(19.2) rem(56);
+  text-align: left;
 }
 
 //矢印
@@ -40,18 +41,18 @@
 .submit-btn span::before {
   width: rem(10);
   height: rem(10);
-  right: rem(41);
-  top: 50%;
-  transform: translateY(-40%) rotate(45deg);
+  right: rem(57);
+  top: 47%;
+  transform: translateY(-47%) rotate(45deg);
   border-top: rem(1) solid $white;
 }
 
 .submit-btn span::after {
   width: rem(40);
   height: rem(1);
-  right: rem(40);
-  top: 53%;
-  transform: translateY(-40%);
+  right: rem(56);
+  top: 48%;
+  transform: translateY(-48%);
   background: $white;
 }
 
