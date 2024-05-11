@@ -172,7 +172,7 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
 
     // 未入力箇所に応じてエラーメッセージを表示し、送信を中止
     // チェックボックス選択がない(他の入力欄は入力あり)場合
-    if(!formChecked && formValid){
+    if((!formChecked && formValid) || (!formChecked && formValid && !formAgree)){
       event.preventDefault(); // フォームの送信を中止
       errorMessageCheck.show();
       $('.js-form').css('margin-top', '2.5rem');

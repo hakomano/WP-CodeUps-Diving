@@ -115,6 +115,11 @@ body.wp-admin{
 /*=================================================================
       【管理画面】投稿画面カスタマイズ
 ==================================================================*/
+/* ブロックエディタ：ブログ記事本文内のリンクブロック使用時 */
+.post-type-post ul.block-editor-block-list__block .block-editor-block-list__block{
+	list-style-image: url("../images/common/starfish-green.svg");
+}
+
 /* サイドバーメニュータイトル */
 .edit-post-sidebar__panel .components-panel__body > .components-panel__body-title{
   background-color: #A2C2C4;
@@ -171,6 +176,20 @@ body.wp-admin{
   content: "※画像の設定がない場合はNo Image用の画像が表示されます";
   font-size: 12px;
   color: gray;
+}
+
+/* サイドメニューに注釈追加 */
+.post-type-post .edit-post-sidebar__panel::after{
+  content: "※ 記事本文でリストブロックを使用した場合";
+  background: url(../images/sample/list-block.webp) no-repeat;
+  background-position: bottom left;
+  background-size: contain;
+  background-color: #DDF0F1;
+  display: block;
+  width: 100%;
+  height: 170px;
+  margin-top: 20px;
+  padding-top: 10px;
 }
 
 /* 見本画像の表示(カスタムフィールド背景：キャンペーン) */

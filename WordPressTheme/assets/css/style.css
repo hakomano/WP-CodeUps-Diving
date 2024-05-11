@@ -695,7 +695,7 @@ a {
 .top-price__img img {
 	-o-object-fit: cover;
 	aspect-ratio: 345/227;
-	height: auto;
+	height: 100%;
 	object-fit: cover;
 	width: 100%;
 }
@@ -1508,6 +1508,10 @@ main {
 }
 
 .contact-form__submit .wpcf7-spinner {
+	display: none;
+}
+
+.wpcf7-form.sent .wpcf7-response-output {
 	display: none;
 }
 
