@@ -64,10 +64,22 @@ body.wp-admin{
   transform:rotateY(180deg);
 }
 
+#dashboard-widgets a:focus{
+  box-shadow: none;
+}
+
 .post-name , .link-ttl{
   margin-top: 40px;
 }
 
+#dashboard-widgets .setting_widget .dashicons-admin-generic{
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.setting_widget a{
+  font-weight: bold;
+}
 
 /*=================================================================
       【管理画面】投稿一覧画面カスタマイズ

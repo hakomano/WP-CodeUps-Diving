@@ -120,7 +120,7 @@ get_header();
               </ul>
               <ul class="nav-list__items">
                 <li class="nav-list__item nav-list__item--map nav-list__item--indent">
-                  <a href="<?php echo esc_url( home_url( '/privacy-policy' ) ); ?>">プライバシー<br class="u-mobile">ポリシー</a>
+                  <a href="<?php echo esc_url( home_url( '/privacypolicy' ) ); ?>">プライバシー<br class="u-mobile">ポリシー</a>
                 </li>
               </ul>
               <ul class="nav-list__items">

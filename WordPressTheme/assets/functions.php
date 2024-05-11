@@ -116,6 +116,13 @@
   add_action( 'init', 'change_post_object_label' );
   add_action( 'admin_menu', 'change_post_menu_label' );
 
+  /* 管理画面から一部サブメニューを非表示にする */
+  function remove_sub_menus() {
+    remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=category' ); // 通常投稿カテゴリー
+    remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=post_tag' ); // 通常投稿タグ
+  }
+  add_action( 'admin_menu', 'remove_sub_menus', 999 );
+
   /*=================================================================
       【管理画面】サイドメニュー並び順を変更
   ==================================================================*/
@@ -352,7 +359,6 @@
       'campaign_period' => '開催期間',
       'date' => '投稿日時',
       'thumbnail' => 'アイキャッチ',
-      'post_views_count' => '閲覧数'
     );
     return $columns;
   }
@@ -562,47 +568,33 @@
             <a href="post-new.php?post_type=voice"><li><p>新しく記事を書く</p><div class="dashicons dashicons-format-status"></div><p class="post-name"><span>●-- お客様の声 --●</span></p></li></a>
             <a href="post.php?post=35&action=edit"><li><p>料金の変更</p><div class="dashicons dashicons-calculator"></div><p class="post-name"><span>●-- コース料金表 --●</span></li></a>
             <a href="post.php?post=38&action=edit"><li><p>FAQ 追加</p><div class="dashicons dashicons-editor-help"></div><p class="post-name"><span>●-- よくある質問 --●</span></li></a>
-            <a href="post.php?post=8&action=edit"><li><p>基本設定</p><div class="dashicons dashicons-admin-generic"></div><p class="post-name"><span>●-- SNS・店情報 --●</span></li></a>
+            <a href="post.php?post=29&action=edit"><li><p>ギャラリー画像追加</p><div class="dashicons dashicons-camera-alt"></div><p class="post-name"><span>●-- ギャラリーフォト --●</span></li></a>
           </ul>';
   }
 
   // //新しいウィジェットを追加する②
-  // function add_dashboard_widgets2() {
-  //   wp_add_dashboard_widget(
-  //     'request_dashboard_widget', // ウィジェットのスラッグ名
-  //     '記事投稿に関するお願い', // ウィジェットに表示するタイトル
-  //     'dashboard_widget_function2' // 実行する関数
-  //   );
-  // }
-  // add_action( 'wp_dashboard_setup', 'add_dashboard_widgets2' );
+  function add_dashboard_widgets2() {
+    wp_add_dashboard_widget(
+      'request_dashboard_widget', // ウィジェットのスラッグ名
+      '基本設定の変更はこちらから', // ウィジェットに表示するタイトル
+      'dashboard_widget_function2' // 実行する関数
+    );
+  }
+  add_action( 'wp_dashboard_setup', 'add_dashboard_widgets2' );
 
   // //ウィジェットに表示するHTMLを定義する
-  // function dashboard_widget_function2(){
-  //   echo '<div class="request_widget">
-  //   <h3><div class="dashicons dashicons-tag"></div>カテゴリー・タグについて</h3>
-  //   <p>各投稿に設定する<strong>カテゴリーやタグのスラッグ</strong>はカテゴリー(タグ)別一覧ページにてタイトル下の英表記サブタイトルとして使用しています。そのため<span>カテゴリーやタグを作成した際はスラッグの設定</span>も同時にお願いします。</p>
-  //   <img src="'.get_theme_file_uri( '/images/admin/category_slug-title.webp' ).'" alt="">
-  //   <details>
-  //     <summary>カテゴリー・タグ設定方法</summary>
-  //     <div class="detail_area">
-  //       <p>👇赤枠のスラッグの欄に英数字ハイフンで入力し、追加ボタンを押してください</p>
-  //       <img src="'.get_theme_file_uri( '/images/admin/category_title-admin.webp' ).'" alt="">
-  //     </div>
-  //   </details>
-  //   <ul>
-  //     <li><a href="edit-tags.php?taxonomy=category"><div class="dashicons dashicons-admin-links"></div>投稿：ご案内【カテゴリー】設定へ</a></li>
-  //     <li><a href="edit-tags.php?taxonomy=animals_category&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【動物名】設定へ</a></li>
-  //     <li><a href="edit-tags.php?taxonomy=animals_tag&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【現状・イベント】設定へ</a></li>
-  //     <li><a href="edit-tags.php?taxonomy=charm_points&post_type=animals"><div class="dashicons dashicons-admin-links"></div>投稿：動物たち【特徴・特性】設定へ (任意)</a></li>
-  //   </ul>
-    
-  //   <p class="no-slug">※スラッグ未設定の場合は、その記事の投稿タイプ(種類)のスラッグを表示します</p>
-  //   <img src="'.get_theme_file_uri( '/images/admin/no-slug.webp' ).'" alt="">
-  //   <p class="no-slug_handle">ご案内記事のカテゴリースラッグ未設定⇒【information】</p>
-  //   <p class="no-slug_handle">動物たち記事のカテゴリー(タグ)スラッグ未設定⇒【animals】</p>
-    
-  //         </div>';
-  // }
+  function dashboard_widget_function2(){
+    echo '<div class="setting_widget">
+    <p>基本設定で変更等がある場合は下記のリンクから設定ページへ移動できます</p>
+    <ul>
+      <li><a href="post.php?post=8&action=edit"><div class="dashicons dashicons-admin-generic"></div>【 SNSリンク 】設定へ</a></li>
+      <li><a href="post.php?post=8&action=edit"><div class="dashicons dashicons-admin-generic"></div>【 店情報 (住所・TEL・営業時間・定休日) 】設定へ</a></li>
+      <li><a href="post.php?post=8&action=edit"><div class="dashicons dashicons-admin-generic"></div>【 トップページのメインスライダー画像 】設定へ</a></li>
+      <li><a href="post.php?post=49&action=edit"><div class="dashicons dashicons-admin-generic"></div>【 プライバシーポリシー 】設定へ</a></li>
+      <li><a href="post.php?post=51&action=edit"><div class="dashicons dashicons-admin-generic"></div>【 利用規約 】設定へ</a></li>
+    </ul>
+          </div>';
+  }
 
   /*=================================================================
       ログイン画面カスタマイズ
