@@ -647,3 +647,12 @@
     return esc_url( home_url( '/' ) );
   }
   add_filter( 'login_headerurl', 'custom_login_logo_url' );
+
+
+  /*=================================================================
+      ループ回数を取得
+  ==================================================================*/
+  function loopNumber(){
+    global $wp_query;
+    return $wp_query->current_post+1;
+  }

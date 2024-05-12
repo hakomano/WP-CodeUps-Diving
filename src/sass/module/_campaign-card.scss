@@ -139,57 +139,95 @@
   }
 }
 
-//下層キャンペーンカード追加項目(PC)
-.campaign-card__sub-bottom {
+//下層キャンペーンカード追加項目：SP時に詳細を見るボタンで内容表示
+.campaign-card__readmore {
+  position: relative;
+  padding: 0 0 rem(65);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
   @include mq(md){
-    margin-top: rem(24);
-    text-align: center;
+    padding: 0;
+    position: static;
+  }
+}
+
+.campaign-card__readmore label {
+  position: absolute;
+  // display: block;
+  left: 50%;
+  bottom: 0;
+  margin: 0 auto;
+  width: rem(120);
+  padding: rem(8);
+  color: $white;
+  text-align: center;
+  border-radius: 5px;
+  background-color: $main-green;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.campaign-card__readmore label::before{
+  content: '詳細を見る';
+}
+
+.campaign-card__readmore input[type="checkbox"]:checked ~ label::before {
+  content: '元に戻す';
+}
+
+.campaign-card__readmore input[type="checkbox"]{
+  display: none;
+}
+
+.campaign-card__readmore input[type="checkbox"]:checked ~ .campaign-card__sub-bottom {
+  display: flex;
+}
+
+//下層キャンペーンカード追加項目
+.campaign-card__sub-bottom {
+  margin-top: rem(24);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  display: none;
+
+  @include mq(md){
     display: flex;
-    flex-direction: column;
-    height: 100%;
   }
 }
 
 .campaign-card__description {
-  @include mq(md){
-    font-size: rem(16);
-    @include line-height(24,16);
-    text-align: left;
-    flex-grow: 1; //価格下揃え用
-  }
+  font-size: rem(16);
+  @include line-height(24,16);
+  text-align: left;
+  flex-grow: 1; //価格下揃え用
 }
 
 .campaign-card__period{
-  @include mq(md){
-    font-size: rem(16);
-    font-family: $second-en-font-family;
-    font-weight: $bold;
-    @include line-height(18,16);
-    color: $accent-green;
-    margin-top: auto; //価格下揃え用
-  }
+  font-size: rem(16);
+  font-family: $second-en-font-family;
+  font-weight: $bold;
+  @include line-height(18,16);
+  color: $accent-green;
+  margin-top: auto; //価格下揃え用
 }
 
 .campaign-card__period time{
-  @include mq(md){
-    margin-top: rem(32);
-    display: inline-block;
-  }
+  margin-top: rem(32);
+  display: inline-block;
 }
 
 .campaign-card__cta-text {
-  @include mq(md){
-    margin-top: rem(8);
-    font-size: rem(14);
-    color: $accent-green;
-    @include line-height(18,14);
-  }
+  margin-top: rem(8);
+  font-size: rem(14);
+  color: $accent-green;
 }
 
 .campaign-card__btn {
-  @include mq(md){
-    margin-top: rem(15);
-    display: inline-block;
-  }
+  margin-top: rem(15);
+  display: inline-block;
 }
-

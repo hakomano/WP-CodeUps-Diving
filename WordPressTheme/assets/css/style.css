@@ -1127,6 +1127,87 @@ main {
 	font-size: 2rem;
 }
 
+.campaign-card__readmore {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 0 0 4.0625rem;
+	position: relative;
+}
+
+.campaign-card__readmore label {
+	background-color: #0D2936;
+	border-radius: 5px;
+	bottom: 0;
+	color: #fff;
+	cursor: pointer;
+	left: 50%;
+	margin: 0 auto;
+	padding: 0.5rem;
+	position: absolute;
+	text-align: center;
+	transform: translateX(-50%);
+	width: 7.5rem;
+	z-index: 1;
+}
+
+.campaign-card__readmore label::before {
+	content: "詳細を見る";
+}
+
+.campaign-card__readmore input[type=checkbox]:checked ~ label::before {
+	content: "元に戻す";
+}
+
+.campaign-card__readmore input[type=checkbox] {
+	display: none;
+}
+
+.campaign-card__readmore input[type=checkbox]:checked ~ .campaign-card__sub-bottom {
+	display: flex;
+}
+
+.campaign-card__sub-bottom {
+	display: flex;
+	display: none;
+	flex-direction: column;
+	height: 100%;
+	margin-top: 1.5rem;
+	text-align: center;
+}
+
+.campaign-card__description {
+	flex-grow: 1;
+	font-size: 1rem;
+	line-height: 1.5;
+	text-align: left;
+}
+
+.campaign-card__period {
+	color: #408F95;
+	font-family: "Lato", sans-serif;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1.125;
+	margin-top: auto;
+}
+
+.campaign-card__period time {
+	display: inline-block;
+	margin-top: 2rem;
+}
+
+.campaign-card__cta-text {
+	color: #408F95;
+	font-size: 0.875rem;
+	margin-top: 0.5rem;
+}
+
+.campaign-card__btn {
+	display: inline-block;
+	margin-top: 0.9375rem;
+}
+
 /* ----- キャンペーンカード一覧 ----- */
 
 .campaign-list {
@@ -3718,45 +3799,13 @@ html {
 	font-size: 2.5rem;
 }
 
+.campaign-card__readmore {
+	padding: 0;
+	position: static;
+}
+
 .campaign-card__sub-bottom {
 	display: flex;
-	flex-direction: column;
-	height: 100%;
-	margin-top: 1.5rem;
-	text-align: center;
-}
-
-.campaign-card__description {
-	flex-grow: 1;
-	font-size: 1rem;
-	line-height: 1.5;
-	text-align: left;
-}
-
-.campaign-card__period {
-	color: #408F95;
-	font-family: "Lato", sans-serif;
-	font-size: 1rem;
-	font-weight: 700;
-	line-height: 1.125;
-	margin-top: auto;
-}
-
-.campaign-card__period time {
-	display: inline-block;
-	margin-top: 2rem;
-}
-
-.campaign-card__cta-text {
-	color: #408F95;
-	font-size: 0.875rem;
-	line-height: 1.2857142857;
-	margin-top: 0.5rem;
-}
-
-.campaign-card__btn {
-	display: inline-block;
-	margin-top: 0.9375rem;
 }
 
 .campaign-list--2col {

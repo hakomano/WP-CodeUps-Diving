@@ -99,49 +99,53 @@
                       <?php endif;?>
                     </div>
                   </div>
-                  <div class="campaign-card__sub-bottom u-desktop">
-                    <!-- 本文 -->
-                    <div class="campaign-card__description">
-                      <?php
-                        echo apply_filters( 'the_content', get_the_content() );
-                      ?>
-                    </div>
-                    <!-- キャンペーン期間 -->
-                    <div class="campaign-card__period">
-                      <?php
-                        // グループフィールドを取得
-                        $campaignPeriod = get_field('campaign_period');
-                        // グループフィールド内の「開始日」フィールドを取得
-                        $startDate = $campaignPeriod['start_date'];
-                        // グループフィールド内の「終了日」フィールドを取得
-                        $endDate = $campaignPeriod['end_date'];
-                        //開始日と終了日から年を取得
-                        $startYear = date('Y', strtotime($startDate));
-                        $endYear = date('Y', strtotime($endDate));
-                      ?>
-                      <?php if ( $startDate ): ?>
-                      <time datetime="<?php echo esc_html( $startDate ); ?>">
-                        <?php echo esc_html( date('Y.n/j', strtotime($startDate)) ); ?>
-                      </time>
-                      <?php endif;?>
-                      <?php if ( $endDate ): ?>
-                      - <time datetime="<?php echo esc_html( $endDate ); ?>">
-                        <!-- 同じ年なら年を非表示に -->
-                        <?php if ( $startYear === $endYear ) {
-                          echo esc_html( date('n/j', strtotime($endDate)) );
-                        } else {
-                          echo esc_html( date('Y.n/j', strtotime($endDate)) );
-                        } ?>
-                      </time>
-                      <?php endif;?>
-                    </div>
-                    <p class="campaign-card__cta-text">
-                      ご予約・お問い合わせはコチラ
-                    </p>
-                    <div class="campaign-card__btn">
-                      <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="button">
-                        <div></div><span>contact us</span>
-                      </a>
+                  <div class="campaign-card__readmore">
+                    <input id="readmore<?php echo loopNumber(); ?>" type="checkbox" class="u-mobile">
+                    <label for="readmore<?php echo loopNumber(); ?>" class="u-mobile"></label>
+                    <div class="campaign-card__sub-bottom">
+                      <!-- 本文 -->
+                      <div class="campaign-card__description">
+                        <?php
+                          echo apply_filters( 'the_content', get_the_content() );
+                        ?>
+                      </div>
+                      <!-- キャンペーン期間 -->
+                      <div class="campaign-card__period">
+                        <?php
+                          // グループフィールドを取得
+                          $campaignPeriod = get_field('campaign_period');
+                          // グループフィールド内の「開始日」フィールドを取得
+                          $startDate = $campaignPeriod['start_date'];
+                          // グループフィールド内の「終了日」フィールドを取得
+                          $endDate = $campaignPeriod['end_date'];
+                          //開始日と終了日から年を取得
+                          $startYear = date('Y', strtotime($startDate));
+                          $endYear = date('Y', strtotime($endDate));
+                        ?>
+                        <?php if ( $startDate ): ?>
+                        <time datetime="<?php echo esc_html( $startDate ); ?>">
+                          <?php echo esc_html( date('Y.n/j', strtotime($startDate)) ); ?>
+                        </time>
+                        <?php endif;?>
+                        <?php if ( $endDate ): ?>
+                        - <time datetime="<?php echo esc_html( $endDate ); ?>">
+                          <!-- 同じ年なら年を非表示に -->
+                          <?php if ( $startYear === $endYear ) {
+                            echo esc_html( date('n/j', strtotime($endDate)) );
+                          } else {
+                            echo esc_html( date('Y.n/j', strtotime($endDate)) );
+                          } ?>
+                        </time>
+                        <?php endif;?>
+                      </div>
+                      <p class="campaign-card__cta-text">
+                        ご予約・お問い合わせはコチラ
+                      </p>
+                      <div class="campaign-card__btn">
+                        <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="button">
+                          <div></div><span>contact us</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
