@@ -572,7 +572,7 @@
           </ul>';
   }
 
-  // //新しいウィジェットを追加する②
+  /* 新しいウィジェットを追加する② */
   function add_dashboard_widgets2() {
     wp_add_dashboard_widget(
       'request_dashboard_widget', // ウィジェットのスラッグ名
@@ -582,7 +582,7 @@
   }
   add_action( 'wp_dashboard_setup', 'add_dashboard_widgets2' );
 
-  // //ウィジェットに表示するHTMLを定義する
+  /* ウィジェットに表示するHTMLを定義する */
   function dashboard_widget_function2(){
     echo '<div class="setting_widget">
     <p>基本設定で変更等がある場合は下記のリンクから設定ページへ移動できます</p>

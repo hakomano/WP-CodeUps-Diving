@@ -31,7 +31,7 @@
                 <a href="<?php the_permalink(); ?>">
                   <?php if ( !empty(get_the_post_thumbnail_url()) ):?>
                   <figure class="blog-card__img">
-                    <img src="<?php esc_url( the_post_thumbnail_url('full') ); ?>"
+                    <img src="<?php the_post_thumbnail_url('full'); ?>"
                       alt="<?php the_title_attribute(); //HTMLを除去してタイトルを取得・表示 ?>のアイキャッチ画像" width="301" height="201"
                       loading="lazy" decoding="async">
                   </figure>

@@ -82,7 +82,7 @@ get_header();
           <div class="nav-list__right">
             <div class="nav-list__box">
               <ul class="nav-list__items u-desktop">
-                <li class="nav-list__item">
+                <li class="nav-list__item nav-list__item--map">
                   <a href="<?php echo esc_url( home_url( '/voice' )); ?>">お客様の声</a>
                 </li>
               </ul>
