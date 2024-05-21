@@ -1,4 +1,4 @@
-<aside class="columns-layout__sidebar sidebar">
+<aside class="sidebar">
   <!-- ブログの人気記事３件 ※View数(アクセス数)がない場合この項目ごと非表示 -->
   <?php
     $loopcounter = 0;

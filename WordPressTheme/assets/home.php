@@ -59,7 +59,9 @@
           </div>
 
           <!-- サイドバー -->
-          <?php get_sidebar(); ?>
+          <div class="columns-layout__sidebar">
+            <?php get_sidebar(); ?>
+          </div>
         </div>
       </div>
     </div>

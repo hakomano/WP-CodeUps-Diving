@@ -80,9 +80,8 @@
                 <!-- アイキャッチ画像(ユーザー画像) -->
                 <?php if ( !empty(get_the_post_thumbnail_url()) ):?>
                 <figure class="campaign-card__img">
-                  <img src="<?php esc_url( the_post_thumbnail_url('full') ); ?>"
-                    alt="<?php the_title_attribute(); ?>のアイキャッチ画像" width="520" height="347" loading="lazy"
-                    decoding="async">
+                  <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title_attribute(); ?>のアイキャッチ画像"
+                    width="520" height="347" loading="lazy" decoding="async">
                 </figure>
                 <?php else:?>
                 <figure class="campaign-card__img">
@@ -252,8 +251,8 @@
           <a href="<?php the_permalink(); ?>">
             <?php if ( !empty(get_the_post_thumbnail_url()) ):?>
             <figure class="blog-card__img">
-              <img src="<?php esc_url( the_post_thumbnail_url('full') ); ?>"
-                alt="<?php the_title_attribute(); ?>のアイキャッチ画像" width="301" height="201" loading="lazy" decoding="async">
+              <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title_attribute(); ?>のアイキャッチ画像"
+                width="301" height="201" loading="lazy" decoding="async">
             </figure>
             <?php else:?>
             <figure class="blog-card__img">
@@ -340,9 +339,8 @@
               <!-- アイキャッチ画像(ユーザー画像) -->
               <?php if ( !empty(get_the_post_thumbnail_url()) ):?>
               <figure class="voice-card__img colorbox">
-                <img src="<?php esc_url( the_post_thumbnail_url('full') ); ?>"
-                  alt="<?php the_title_attribute(); ?>のアイキャッチ画像" width="180" height="140" loading="lazy"
-                  decoding="async">
+                <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title_attribute(); ?>のアイキャッチ画像"
+                  width="180" height="140" loading="lazy" decoding="async">
               </figure>
               <?php else:?>
               <figure class="voice-card__img">

@@ -5,11 +5,12 @@
   <section class="sub-fv">
     <h1 class="sub-fv__title">
       <?php
-        if(is_year()){
-          echo 'Blog ― '.esc_html( get_the_time("Y年") );
-        }elseif(is_month()){
-        echo 'Blog ― '.esc_html( get_the_time("Y年n月") );
-        }
+        // if(is_year()){
+        //   echo 'Blog ― '.esc_html( get_the_time("Y年") );
+        // }elseif(is_month()){
+        // echo 'Blog ― '.esc_html( get_the_time("Y年n月") );
+        // }
+        the_archive_title();
       ?>
     </h1>
     <div class="sub-fv__img">
@@ -67,7 +68,9 @@
           </div>
 
           <!-- サイドバー -->
-          <?php get_sidebar(); ?>
+          <div class="columns-layout__sidebar">
+            <?php get_sidebar(); ?>
+          </div>
         </div>
       </div>
     </div>

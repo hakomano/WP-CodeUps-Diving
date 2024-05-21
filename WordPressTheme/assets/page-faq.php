@@ -28,7 +28,7 @@ get_header();
       <div class="sub-faq__bg sub-bg">
         <?php
           $faqGroup = SCF::get('faq_group');
-          if ( $faqGroup ) :
+          if ( $faqGroup[0]['faq_question'] || $faqGroup[0]['faq_answer'] ) : //『繰り返し』内の『サブフィールド』が入力されているかどうかを確認
         ?>
         <ul class="sub-faq__list faq-list">
           <?php
@@ -44,6 +44,8 @@ get_header();
           </li>
           <?php endforeach; ?>
         </ul>
+        <?php else: ?>
+        <p>現在、質問がありません。</p>
         <?php endif; ?>
       </div>
     </div>
